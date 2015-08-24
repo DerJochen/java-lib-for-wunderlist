@@ -1,7 +1,7 @@
 package de.jochor.lib.wunderlist.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * json<br>
@@ -15,7 +15,7 @@ import lombok.Setter;
  *
  */
 @Getter
-@Setter
+@AllArgsConstructor
 public class UpdateListPositionsRequest {
 
 	private int[] values;

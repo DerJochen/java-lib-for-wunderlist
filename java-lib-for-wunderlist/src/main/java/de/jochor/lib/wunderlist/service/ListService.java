@@ -1,6 +1,5 @@
 package de.jochor.lib.wunderlist.service;
 
-import de.jochor.lib.wunderlist.model.RetrieveAllListsResponse;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 
 /**
@@ -15,7 +14,7 @@ public interface ListService {
 	 * GET a.wunderlist.com/api/v1/lists
 	 * @return
 	 */
-	RetrieveAllListsResponse retrieveAll();
+	RetrieveListResponse[] retrieveAll();
 
 	/**
 	 * GET a.wunderlist.com/api/v1/lists/:id

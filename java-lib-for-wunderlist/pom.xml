@@ -12,13 +12,14 @@
 		<artifactId>super-pom</artifactId>
 		<version>0.2.0</version>
 	</parent>
-	
+
 	<properties>
 		<version.http4j>0.0.1-SNAPSHOT</version.http4j>
 		<version.http4j-junit>0.0.1-SNAPSHOT</version.http4j-junit>
+		<version.jackson>2.6.1</version.jackson>
 		<version.lombok>1.16.4</version.lombok>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>de.jochor.http</groupId>
@@ -28,13 +29,19 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<!-- Type 0 -->
 		</dependency>
 
 		<!-- Test Dependencies -->
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

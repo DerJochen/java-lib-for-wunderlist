@@ -19,16 +19,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UpdateListPositionsResponse {
-
-	private int id;
-
-	private int[] values;
-
-	private int revision;
+public class UpdateListPositionsResponse extends RetrieveListPositionsResponse {
 
 	private int list_id;
-
-	private String type;
 
 }

@@ -1,7 +1,6 @@
 package de.jochor.lib.wunderlist.service;
 
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
-import de.jochor.lib.wunderlist.model.UpdateListPositionsRequest;
 import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
 
 /**
@@ -17,13 +16,13 @@ public interface PositionsService {
 	 * @param id
 	 * @return
 	 */
-	RetrieveListPositionsResponse retrieveListPositions(int id);
+	RetrieveListPositionsResponse retrieve(int id);
 
 	/**
 	 * PUT or PATCH a.wunderlist.com/api/v1/list_positions/:id
 	 * @param id
 	 * @param request
 	 */
-	UpdateListPositionsResponse updateListPositions(int id, UpdateListPositionsRequest request);
+	UpdateListPositionsResponse update(int id, int[] values, int revision);
 
 }

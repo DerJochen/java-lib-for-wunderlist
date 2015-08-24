@@ -5,7 +5,8 @@ import java.net.URI;
 import de.jochor.lib.http.HttpClient;
 import de.jochor.lib.http.HttpClientBuilder;
 import de.jochor.lib.http.model.GetRequest;
-import de.jochor.lib.wunderlist.model.RetrieveAllListsResponse;
+import de.jochor.lib.json.JSONEntityService;
+import de.jochor.lib.json.jackson.JSONEntityServiceJackson;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 
 /**
@@ -20,21 +21,23 @@ public class ListServiceImpl implements ListService {
 
 	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/lists/%d";
 
+	private HttpClient httpClient;
+
+	// TODO
+	private JSONEntityService jsonEntityService = new JSONEntityServiceJackson();
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RetrieveAllListsResponse retrieveAll() {
-		HttpClient httpClient = HttpClientBuilder.create();
-
+	public RetrieveListResponse[] retrieveAll() {
 		URI uri = URI.create(RETRIEVE_ALL_URI);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = httpClient.get(getRequest);
+		String responseJSON = getHttpClient().get(getRequest);
+		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
 
-		// TODO convert to Object
-
-		return null;
+		return response;
 	}
 
 	/**
@@ -42,17 +45,21 @@ public class ListServiceImpl implements ListService {
 	 */
 	@Override
 	public RetrieveListResponse retrieve(int id) {
-		HttpClient httpClient = HttpClientBuilder.create();
-
 		String uriString = String.format(RETRIEVE_URI, id);
 		URI uri = URI.create(uriString);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = httpClient.get(getRequest);
+		String responseJSON = getHttpClient().get(getRequest);
+		RetrieveListResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse.class);
 
-		// TODO convert to Object
+		return response;
+	}
 
-		return null;
+	private HttpClient getHttpClient() {
+		if (httpClient == null) {
+			httpClient = HttpClientBuilder.create();
+		}
+		return httpClient;
 	}
 
 }
