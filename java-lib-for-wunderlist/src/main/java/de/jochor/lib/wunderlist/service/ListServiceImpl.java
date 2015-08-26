@@ -5,8 +5,8 @@ import java.net.URI;
 import de.jochor.lib.http.HttpClient;
 import de.jochor.lib.http.HttpClientBuilder;
 import de.jochor.lib.http.model.GetRequest;
-import de.jochor.lib.json.JSONEntityService;
-import de.jochor.lib.json.jackson.JSONEntityServiceJackson;
+import de.jochor.lib.json.JSONBindingService;
+import de.jochor.lib.json.JSONBindingServiceBuilder;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 
 /**
@@ -21,10 +21,9 @@ public class ListServiceImpl implements ListService {
 
 	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/lists/%d";
 
-	private HttpClient httpClient;
+	private HttpClient httpClient = HttpClientBuilder.create();
 
-	// TODO
-	private JSONEntityService jsonEntityService = new JSONEntityServiceJackson();
+	private JSONBindingService jsonEntityService = JSONBindingServiceBuilder.create();
 
 	/**
 	 * {@inheritDoc}
@@ -34,7 +33,7 @@ public class ListServiceImpl implements ListService {
 		URI uri = URI.create(RETRIEVE_ALL_URI);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = getHttpClient().get(getRequest);
+		String responseJSON = httpClient.get(getRequest);
 		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
 
 		return response;
@@ -49,17 +48,10 @@ public class ListServiceImpl implements ListService {
 		URI uri = URI.create(uriString);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = getHttpClient().get(getRequest);
+		String responseJSON = httpClient.get(getRequest);
 		RetrieveListResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse.class);
 
 		return response;
-	}
-
-	private HttpClient getHttpClient() {
-		if (httpClient == null) {
-			httpClient = HttpClientBuilder.create();
-		}
-		return httpClient;
 	}
 
 }

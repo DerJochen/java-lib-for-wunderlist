@@ -16,28 +16,32 @@
 	<properties>
 		<version.http4j>0.0.1-SNAPSHOT</version.http4j>
 		<version.http4j-junit>0.0.1-SNAPSHOT</version.http4j-junit>
-		<version.jackson>2.6.1</version.jackson>
+		<version.json4j>0.0.1-SNAPSHOT</version.json4j>
+		<version.json4j-gson>0.0.1-SNAPSHOT</version.json4j-gson>
 		<version.lombok>1.16.4</version.lombok>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>de.jochor.http</groupId>
+			<groupId>de.jochor.lib.http</groupId>
 			<artifactId>http4j</artifactId>
 			<version>${version.http4j}</version>
 			<!-- Type 0 -->
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${version.jackson}</version>
+			<groupId>de.jochor.lib.json</groupId>
+			<artifactId>json4j</artifactId>
+			<version>${version.json4j}</version>
+			<!-- Type 0 -->
 		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${version.lombok}</version>
 			<!-- Type 0 -->
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Test Dependencies -->
@@ -50,25 +54,21 @@
 		</dependency>
 
 		<dependency>
-			<groupId>de.jochor.http</groupId>
+			<groupId>de.jochor.lib.http</groupId>
 			<artifactId>http4j-junit</artifactId>
 			<version>${version.http4j-junit}</version>
 			<!-- Type T -->
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${version.lombok}</version>
-				<!-- Type 0 -->
-				<scope>provided</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+		<dependency>
+			<groupId>de.jochor.lib.json</groupId>
+			<artifactId>json4j-gson</artifactId>
+			<version>${version.json4j-gson}</version>
+			<!-- Type T -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<repositories>
 		<repository>
