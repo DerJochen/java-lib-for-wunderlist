@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.jochor.lib.http.apache.HttpClientJUnit;
+import de.jochor.lib.http4j.apache.HttpClientJUnit;
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 
 /**
@@ -22,11 +21,6 @@ public class PositionServiceImplTest {
 	private static final int id = 34234234;
 	private static final int revision = 124;
 	private static final String type = "task_position";
-
-	@BeforeClass
-	public static void beforeClass() {
-		HttpClientJUnit.init();
-	}
 
 	private PositionServiceImpl positionService;
 

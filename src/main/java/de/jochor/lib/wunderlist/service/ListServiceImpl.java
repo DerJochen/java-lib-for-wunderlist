@@ -2,11 +2,11 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
-import de.jochor.lib.http.HttpClient;
-import de.jochor.lib.http.HttpClientBuilder;
-import de.jochor.lib.http.model.GetRequest;
-import de.jochor.lib.json.JSONBindingService;
-import de.jochor.lib.json.JSONBindingServiceBuilder;
+import de.jochor.lib.http4j.HttpClient;
+import de.jochor.lib.http4j.HttpClientFactory;
+import de.jochor.lib.http4j.model.GetRequest;
+import de.jochor.lib.json4j.JSONBindingService;
+import de.jochor.lib.json4j.JSONBindingServiceFactory;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 
 /**
@@ -21,9 +21,9 @@ public class ListServiceImpl implements ListService {
 
 	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/lists/%d";
 
-	private HttpClient httpClient = HttpClientBuilder.create();
+	private HttpClient httpClient = HttpClientFactory.create();
 
-	private JSONBindingService jsonEntityService = JSONBindingServiceBuilder.create();
+	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	/**
 	 * {@inheritDoc}

@@ -2,19 +2,13 @@ package de.jochor.lib.wunderlist.service;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.jochor.lib.http.apache.HttpClientJUnit;
+import de.jochor.lib.http4j.apache.HttpClientJUnit;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
 
 public class ListServiceImplTest {
-
-	@BeforeClass
-	public static void beforeClass() {
-		HttpClientJUnit.init();
-	}
 
 	private ListServiceImpl listService;
 

@@ -3,9 +3,9 @@ package de.jochor.lib.wunderlist.service;
 import java.net.URI;
 import java.util.List;
 
-import de.jochor.lib.http.HttpClient;
-import de.jochor.lib.http.HttpClientBuilder;
-import de.jochor.lib.http.model.PostRequest;
+import de.jochor.lib.http4j.HttpClient;
+import de.jochor.lib.http4j.HttpClientFactory;
+import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.wunderlist.model.CreateWebhookRequest;
 import de.jochor.lib.wunderlist.model.CreateWebhookResponse;
 import de.jochor.lib.wunderlist.model.Webhook;
@@ -24,8 +24,8 @@ public class WebhookServiceImpl implements WebhookService {
 	 */
 	@Override
 	public CreateWebhookResponse create(CreateWebhookRequest request) {
-		HttpClient httpClient = HttpClientBuilder.create();
-		
+		HttpClient httpClient = HttpClientFactory.create();
+
 		String body = ""; // TODO convert to JSON: request
 
 		PostRequest postRequest = new PostRequest(CREATE_URI);

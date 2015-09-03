@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jochor.lib.json.JSONBindingService;
-import de.jochor.lib.json.gson.JSONBindingServiceGson;
+import de.jochor.lib.json4j.JSONBindingService;
+import de.jochor.lib.json4j.gson.JSONBindingServiceGson;
 
 /**
  *
