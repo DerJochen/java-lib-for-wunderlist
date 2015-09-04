@@ -1,5 +1,7 @@
 package de.jochor.lib.wunderlist.service;
 
+import java.util.Properties;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,6 +61,16 @@ public class ListServiceImplTest {
 		RetrieveListResponse retrieveListResponse = listService.retrieve(1);
 
 		RetrieveListResponseTest.checkListResponse(retrieveListResponse, 0);
+	}
+
+	@Test
+	public void testRetrieveInt_real() {
+		Properties realProperties = RealProperties.getRealProperties();
+		if (realProperties == null) {
+			return;
+		}
+
+		; // TODO
 	}
 
 }

@@ -19,6 +19,7 @@
 		<version.json4j>0.0.1-SNAPSHOT</version.json4j>
 		<version.json4j-gson>0.0.1-SNAPSHOT</version.json4j-gson>
 		<version.lombok>1.16.4</version.lombok>
+		<version.junit>4.12</version.junit>
 	</properties>
 
 	<dependencies>
@@ -75,6 +76,12 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${version.lombok}</version>
+				<!-- Type 0 -->
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
 				<!-- Type 0 -->
 			</dependency>
 		</dependencies>
