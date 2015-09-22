@@ -14,8 +14,10 @@ import de.jochor.lib.wunderlist.model.RetrieveAccessTokenResponse;
 
 /**
  *
+ * <p>
+ * <b>Started:</b> 2015-09-04
+ * </p>
  * @author Jochen Hormes
- * @start 2015-09-04
  *
  */
 public class AuthorizationServiceImpl implements AuthorizationService {

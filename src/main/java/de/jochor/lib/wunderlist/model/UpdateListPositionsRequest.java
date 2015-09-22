@@ -10,8 +10,10 @@ import lombok.Getter;
  * "revision": 123<br>
  * }
  *
+ * <p>
+ * <b>Started:</b> 2015-08-19
+ * </p>
  * @author Jochen Hormes
- * @start 2015-08-19
  *
  */
 @Getter

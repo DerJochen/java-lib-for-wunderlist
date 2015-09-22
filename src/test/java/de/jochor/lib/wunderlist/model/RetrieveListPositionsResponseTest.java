@@ -11,8 +11,10 @@ import de.jochor.lib.json4j.gson.JSONBindingServiceGson;
 
 /**
  *
+ * <p>
+ * <b>Started:</b> 2015-08-25
+ * </p>
  * @author Jochen Hormes
- * @start 2015-08-25
  *
  */
 public class RetrieveListPositionsResponseTest {

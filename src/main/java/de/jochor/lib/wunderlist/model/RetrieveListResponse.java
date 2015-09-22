@@ -14,8 +14,11 @@ import lombok.Setter;
  * "revision": 10<br>
  * }
  *
+ * <p>
+ * <b>Started:</b> 2015-08-19
+ * </p>
+ * 
  * @author Jochen
- * @start 2015-08-19
  *
  */
 @Getter

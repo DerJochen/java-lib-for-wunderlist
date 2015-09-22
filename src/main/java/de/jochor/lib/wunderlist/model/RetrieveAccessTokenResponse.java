@@ -9,8 +9,11 @@ import lombok.Setter;
  * "access_token": "976d16a81ccf621a654fcc23193b09498b220e89eb72ced3"<br>
  * }
  *
+ * <p>
+ * <b>Started:</b> 2015-08-19
+ * </p>
+ * 
  * @author Jochen Hormes
- * @start 2015-08-19
  *
  */
 @Getter

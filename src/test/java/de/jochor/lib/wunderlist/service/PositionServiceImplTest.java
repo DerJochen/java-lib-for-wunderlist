@@ -12,8 +12,10 @@ import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 
 /**
  *
+ * <p>
+ * <b>Started:</b> 2015-08-24
+ * </p>
  * @author Jochen Hormes
- * @start 2015-08-24
  *
  */
 public class PositionServiceImplTest {
