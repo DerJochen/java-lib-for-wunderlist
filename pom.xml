@@ -76,8 +76,8 @@
 	<repositories>
 		<!-- Source of the parent pom -->
 		<repository>
-			<id>maven2-repository.jochor.de</id>
-			<url>http://maven.jochor.de/content/repositories/releases/</url>
+			<id>jochor-public-releases</id>
+			<url>http://maven.jochor.de/content/repositories/public-releases/</url>
 		</repository>
 	</repositories>
 
