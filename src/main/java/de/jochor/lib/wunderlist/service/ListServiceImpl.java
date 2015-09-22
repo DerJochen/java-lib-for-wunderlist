@@ -2,8 +2,8 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
-import de.jochor.lib.http4j.HttpClient;
-import de.jochor.lib.http4j.HttpClientFactory;
+import de.jochor.lib.http4j.HTTPClient;
+import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
@@ -21,7 +21,7 @@ public class ListServiceImpl implements ListService {
 
 	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/lists/%d";
 
-	private HttpClient httpClient = HttpClientFactory.create();
+	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
@@ -33,7 +33,7 @@ public class ListServiceImpl implements ListService {
 		URI uri = URI.create(RETRIEVE_ALL_URI);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = httpClient.get(getRequest);
+		String responseJSON = HTTPClient.get(getRequest);
 		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
 
 		return response;
@@ -48,7 +48,7 @@ public class ListServiceImpl implements ListService {
 		URI uri = URI.create(uriString);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = httpClient.get(getRequest);
+		String responseJSON = HTTPClient.get(getRequest);
 		RetrieveListResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse.class);
 
 		return response;

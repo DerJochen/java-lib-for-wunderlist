@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import de.jochor.lib.http4j.apache.HttpClientJUnit;
+import de.jochor.lib.http4j.apache.HTTPClientJUnit;
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 
 /**
@@ -33,7 +33,7 @@ public class PositionServiceImplTest {
 	public void testRetrieveListPositionsInt_emptyList() {
 		int[] values = { 123, 234, 345, 456, 321 };
 		String json = createRequestJSON(values);
-		HttpClientJUnit.addResponse(json);
+		HTTPClientJUnit.addResponse(json);
 
 		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1);
 
@@ -44,7 +44,7 @@ public class PositionServiceImplTest {
 	public void testRetrieveListPositionsInt_normalList() {
 		int[] values = { 123, 234, 345, 456, 321 };
 		String json = createRequestJSON(values);
-		HttpClientJUnit.addResponse(json);
+		HTTPClientJUnit.addResponse(json);
 
 		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1);
 
@@ -58,7 +58,7 @@ public class PositionServiceImplTest {
 		int listId = 34234234;
 		int revision = 124;
 		String type = "task_position";
-		HttpClientJUnit.addResponse( //
+		HTTPClientJUnit.addResponse( //
 				"{\"id\": " + id + "," //
 						+ "\"values\": []," //
 						+ "\"revision\": " + revision + "," //

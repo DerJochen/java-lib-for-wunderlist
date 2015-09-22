@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jochor.lib.http4j.apache.HttpClientJUnit;
+import de.jochor.lib.http4j.apache.HTTPClientJUnit;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
 
@@ -21,7 +21,7 @@ public class ListServiceImplTest {
 
 	@Test
 	public void testRetrieveAll_noLists() {
-		HttpClientJUnit.addResponse("[]");
+		HTTPClientJUnit.addResponse("[]");
 
 		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
 
@@ -32,7 +32,7 @@ public class ListServiceImplTest {
 	@Test
 	public void testRetrieveAll_oneList() {
 		String response = "[" + RetrieveListResponseTest.createListJSON(0) + "]";
-		HttpClientJUnit.addResponse(response);
+		HTTPClientJUnit.addResponse(response);
 
 		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
 
@@ -45,7 +45,7 @@ public class ListServiceImplTest {
 	public void testRetrieveAll_threeLists() {
 		String response = "[" + RetrieveListResponseTest.createListJSON(0) + "," + RetrieveListResponseTest.createListJSON(1) + ","
 				+ RetrieveListResponseTest.createListJSON(2) + "]";
-		HttpClientJUnit.addResponse(response);
+		HTTPClientJUnit.addResponse(response);
 
 		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
 		Assert.assertEquals(3, allListsResponse.length);
@@ -56,7 +56,7 @@ public class ListServiceImplTest {
 
 	@Test
 	public void testRetrieveInt() {
-		HttpClientJUnit.addResponse(RetrieveListResponseTest.createListJSON(0));
+		HTTPClientJUnit.addResponse(RetrieveListResponseTest.createListJSON(0));
 
 		RetrieveListResponse retrieveListResponse = listService.retrieve(1);
 

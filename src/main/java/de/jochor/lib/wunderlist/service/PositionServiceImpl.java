@@ -2,8 +2,8 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
-import de.jochor.lib.http4j.HttpClient;
-import de.jochor.lib.http4j.HttpClientFactory;
+import de.jochor.lib.http4j.HTTPClient;
+import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.json4j.JSONBindingService;
@@ -24,7 +24,7 @@ public class PositionServiceImpl implements PositionsService {
 
 	private static final String UPDATE_URI = "a.wunderlist.com/api/v1/list_positions/%d";
 
-	private HttpClient httpClient = HttpClientFactory.create();
+	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
@@ -37,7 +37,7 @@ public class PositionServiceImpl implements PositionsService {
 		URI uri = URI.create(uriString);
 		GetRequest getRequest = new GetRequest(uri);
 
-		String responseJSON = httpClient.get(getRequest);
+		String responseJSON = HTTPClient.get(getRequest);
 		RetrieveListPositionsResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListPositionsResponse.class);
 
 		return response;
@@ -56,7 +56,7 @@ public class PositionServiceImpl implements PositionsService {
 		String requestJSON = jsonEntityService.toJSON(request);
 		putRequest.setBody(requestJSON);
 
-		String responseJSON = httpClient.put(putRequest);
+		String responseJSON = HTTPClient.put(putRequest);
 		UpdateListPositionsResponse response = jsonEntityService.toEntity(responseJSON, UpdateListPositionsResponse.class);
 
 		return response;

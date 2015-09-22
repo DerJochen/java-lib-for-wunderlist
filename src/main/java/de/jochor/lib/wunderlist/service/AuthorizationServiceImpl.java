@@ -5,8 +5,8 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-import de.jochor.lib.http4j.HttpClient;
-import de.jochor.lib.http4j.HttpClientFactory;
+import de.jochor.lib.http4j.HTTPClient;
+import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
@@ -24,7 +24,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
 	private static final URI ACCESS_TOKEN_URI = URI.create("https://www.wunderlist.com/oauth/access_token");
 
-	private HttpClient httpClient = HttpClientFactory.create();
+	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
@@ -50,7 +50,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	public String retrieveAccessToken(String clientId, String clientSecrete, String code) {
 		PostRequest request = new PostRequest(ACCESS_TOKEN_URI);
 
-		String responseJSON = httpClient.post(request);
+		String responseJSON = HTTPClient.post(request);
 		RetrieveAccessTokenResponse response = jsonEntityService.toEntity(responseJSON, RetrieveAccessTokenResponse.class);
 
 		String accessToken = response.getAccess_token();
