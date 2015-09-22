@@ -13,7 +13,7 @@ public interface AuthorizationService {
 
 	/**
 	 * Builds the authorization request URL to redirect the user to.
-	 * 
+	 *
 	 * @param clientId
 	 *            The Client ID you received from Wunderlist when you registered your application.
 	 * @param callbackURL
@@ -37,7 +37,5 @@ public interface AuthorizationService {
 	 * @return The access token
 	 */
 	String retrieveAccessToken(String clientId, String clientSecrete, String code);
-
-	void registerAuthorization();
 
 }

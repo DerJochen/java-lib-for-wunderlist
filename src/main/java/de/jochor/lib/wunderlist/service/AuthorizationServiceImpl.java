@@ -17,6 +17,7 @@ import de.jochor.lib.wunderlist.model.RetrieveAccessTokenResponse;
  * <p>
  * <b>Started:</b> 2015-09-04
  * </p>
+ *
  * @author Jochen Hormes
  *
  */
@@ -38,7 +39,9 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		try {
 			String callbackURLEnc = URLEncoder.encode(callbackURL, StandardCharsets.UTF_8.name());
 			String stateEnc = URLEncoder.encode(state, StandardCharsets.UTF_8.name());
+
 			String redirectURL = String.format(REDIRECT_TEMPLATE, clientId, callbackURLEnc, stateEnc);
+
 			return redirectURL;
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
@@ -58,16 +61,6 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		String accessToken = response.getAccess_token();
 
 		return accessToken;
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void registerAuthorization() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

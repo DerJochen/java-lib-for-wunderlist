@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.apache.HTTPClientJUnit;
+import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 
 /**
@@ -15,10 +16,13 @@ import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
  * <p>
  * <b>Started:</b> 2015-08-24
  * </p>
+ * 
  * @author Jochen Hormes
  *
  */
 public class PositionServiceImplTest {
+
+	private static final Authorization AUTHORIZATION = new Authorization();
 
 	private static final int id = 34234234;
 	private static final int revision = 124;
@@ -37,7 +41,7 @@ public class PositionServiceImplTest {
 		String json = createRequestJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1);
+		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1, AUTHORIZATION);
 
 		checkResponse(values, retrieveListPositionsResponse);
 	}
@@ -48,7 +52,7 @@ public class PositionServiceImplTest {
 		String json = createRequestJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1);
+		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1, AUTHORIZATION);
 
 		checkResponse(values, retrieveListPositionsResponse);
 	}
@@ -62,11 +66,11 @@ public class PositionServiceImplTest {
 		String type = "task_position";
 		HTTPClientJUnit.addResponse( //
 				"{\"id\": " + id + "," //
-						+ "\"values\": []," //
-						+ "\"revision\": " + revision + "," //
-						+ "\"list_id\": " + listId + "," //
-						+ "\"type\": \"" + type + "\"" //
-						+ "}");
+				+ "\"values\": []," //
+				+ "\"revision\": " + revision + "," //
+				+ "\"list_id\": " + listId + "," //
+				+ "\"type\": \"" + type + "\"" //
+				+ "}");
 		// TODO not yet implemented
 		Assert.fail("not yet implemented");
 	}

@@ -7,10 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.apache.HTTPClientJUnit;
+import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
 
 public class ListServiceImplTest {
+
+	private static final Authorization AUTHORIZATION = new Authorization();
 
 	private ListServiceImpl listService;
 
@@ -23,7 +26,7 @@ public class ListServiceImplTest {
 	public void testRetrieveAll_noLists() {
 		HTTPClientJUnit.addResponse("[]");
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
+		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
 
 		Assert.assertNotNull(allListsResponse);
 		Assert.assertEquals(0, allListsResponse.length);
@@ -34,7 +37,7 @@ public class ListServiceImplTest {
 		String response = "[" + RetrieveListResponseTest.createListJSON(0) + "]";
 		HTTPClientJUnit.addResponse(response);
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
+		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
 
 		Assert.assertNotNull(allListsResponse);
 		Assert.assertEquals(1, allListsResponse.length);
@@ -47,7 +50,7 @@ public class ListServiceImplTest {
 				+ RetrieveListResponseTest.createListJSON(2) + "]";
 		HTTPClientJUnit.addResponse(response);
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll();
+		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
 		Assert.assertEquals(3, allListsResponse.length);
 		for (int i = 0; i < 3; i++) {
 			RetrieveListResponseTest.checkListResponse(allListsResponse[i], i);
@@ -58,7 +61,7 @@ public class ListServiceImplTest {
 	public void testRetrieveInt() {
 		HTTPClientJUnit.addResponse(RetrieveListResponseTest.createListJSON(0));
 
-		RetrieveListResponse retrieveListResponse = listService.retrieve(1);
+		RetrieveListResponse retrieveListResponse = listService.retrieve(1, AUTHORIZATION);
 
 		RetrieveListResponseTest.checkListResponse(retrieveListResponse, 0);
 	}
