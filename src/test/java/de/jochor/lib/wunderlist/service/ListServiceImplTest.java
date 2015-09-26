@@ -2,11 +2,13 @@ package de.jochor.lib.wunderlist.service;
 
 import java.util.Properties;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.jochor.lib.http4j.apache.HTTPClientJUnit;
+import de.jochor.lib.http4j.junit.HTTPClientJUnit;
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
@@ -16,6 +18,22 @@ public class ListServiceImplTest {
 	private static final Authorization AUTHORIZATION = new Authorization();
 
 	private ListServiceImpl listService;
+
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		System.setProperty("jochor.servicefactory.silence", "true");
+
+		AUTHORIZATION.setClientId("the applications id");
+		AUTHORIZATION.setUserToken("the users access token");
+
+		HTTPClientJUnit.addExpectedHeader("X-Client-ID", AUTHORIZATION.getClientId());
+		HTTPClientJUnit.addExpectedHeader("X-Access-Token", AUTHORIZATION.getUserToken());
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() {
+		HTTPClientJUnit.clearExpectedHeaders();
+	}
 
 	@Before
 	public void setUp() {
