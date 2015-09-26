@@ -15,12 +15,12 @@
 
 	<properties>
 		<version.http4j>0.0.1-SNAPSHOT</version.http4j>
-		<version.json4j>0.0.1-SNAPSHOT</version.json4j>
+		<version.json4j>0.1.0</version.json4j>
 		<version.lombok>1.16.4</version.lombok>
 
 		<version.junit>4.12</version.junit>
 		<version.http4j-junit>0.0.1-SNAPSHOT</version.http4j-junit>
-		<version.json4j-gson>0.0.1-SNAPSHOT</version.json4j-gson>
+		<version.json4j-gson>0.1.0</version.json4j-gson>
 	</properties>
 
 	<dependencies>

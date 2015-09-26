@@ -10,7 +10,7 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
  * <b>Started:</b> 2015-08-19
  * </p>
  *
- * @author Jochen
+ * @author Jochen Hormes
  *
  */
 public interface PositionsService {
@@ -40,5 +40,8 @@ public interface PositionsService {
 	 * @return {@link UpdateListPositionsResponse} object
 	 */
 	UpdateListPositionsResponse update(int id, int[] values, int revision, Authorization authorization);
+
+	// TODO Add methods for task positions, the methods above are for list resources in general (find out what the
+	// difference is)
 
 }
