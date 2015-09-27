@@ -41,7 +41,4 @@ public interface PositionsService {
 	 */
 	UpdateListPositionsResponse update(int id, int[] values, int revision, Authorization authorization);
 
-	// TODO Add methods for task positions, the methods above are for list resources in general (find out what the
-	// difference is)
-
 }

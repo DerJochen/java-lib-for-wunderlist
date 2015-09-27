@@ -12,6 +12,7 @@ import java.util.Properties;
  * <p>
  * <b>Started:</b> 2015-09-04
  * </p>
+ *
  * @author Jochen Hormes
  *
  */

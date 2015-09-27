@@ -22,7 +22,7 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
  * @author Jochen Hormes
  *
  */
-public class PositionServiceImpl implements PositionsService {
+public class PositionsServiceImpl implements PositionsService {
 
 	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/list_positions/%d";
 

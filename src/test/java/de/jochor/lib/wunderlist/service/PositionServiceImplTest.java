@@ -30,7 +30,7 @@ public class PositionServiceImplTest {
 	private static final int revision = 124;
 	private static final String type = "task_position";
 
-	private PositionServiceImpl positionService;
+	private PositionsServiceImpl positionService;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -50,7 +50,7 @@ public class PositionServiceImplTest {
 
 	@Before
 	public void setUp() {
-		positionService = new PositionServiceImpl();
+		positionService = new PositionsServiceImpl();
 	}
 
 	@Test
