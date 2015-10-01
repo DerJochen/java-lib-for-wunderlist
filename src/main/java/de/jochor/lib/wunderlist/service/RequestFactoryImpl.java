@@ -34,10 +34,14 @@ public class RequestFactoryImpl implements RequestFactory {
 		PutRequest request = new PutRequest(uri);
 		addAuthorization(request, authorization);
 		request.setBody(body);
+
 		return request;
 	}
 
 	protected void addAuthorization(BaseRequest request, Authorization authorization) {
+		if (authorization == null) {
+			return;
+		}
 		request.setHeader(CLIENT_ID, authorization.getClientId());
 		request.setHeader(ACCESS_TOKEN, authorization.getUserToken());
 	}
