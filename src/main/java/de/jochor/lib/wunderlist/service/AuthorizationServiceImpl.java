@@ -35,7 +35,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String builddAuthorisationRequestURL(String clientId, String callbackURL, String state) {
+	public String buildAuthorisationRequestURL(String clientId, String callbackURL, String state) {
 		try {
 			String callbackURLEnc = URLEncoder.encode(callbackURL, StandardCharsets.UTF_8.name());
 			String stateEnc = URLEncoder.encode(state, StandardCharsets.UTF_8.name());

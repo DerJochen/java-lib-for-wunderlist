@@ -22,7 +22,7 @@ public interface AuthorizationService {
 	 *            An unguessable random string. It is used to protect against cross-site request forgery attacks.
 	 * @return Authorization request URL
 	 */
-	String builddAuthorisationRequestURL(String clientId, String callbackURL, String state);
+	String buildAuthorisationRequestURL(String clientId, String callbackURL, String state);
 
 	/**
 	 *
