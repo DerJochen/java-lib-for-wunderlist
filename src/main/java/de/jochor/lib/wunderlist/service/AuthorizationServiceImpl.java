@@ -10,6 +10,7 @@ import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
+import de.jochor.lib.wunderlist.model.RetrieveAccessTokenRequest;
 import de.jochor.lib.wunderlist.model.RetrieveAccessTokenResponse;
 
 /**
@@ -30,6 +31,8 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
+
+	private RequestFactory requestFactory = new RequestFactoryImpl();
 
 	/**
 	 * {@inheritDoc}
@@ -53,9 +56,12 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	 */
 	@Override
 	public String retrieveAccessToken(String clientId, String clientSecrete, String code) {
-		PostRequest request = new PostRequest(ACCESS_TOKEN_URI);
+		RetrieveAccessTokenRequest request = new RetrieveAccessTokenRequest(clientId, clientSecrete, code);
+		String requestJSON = jsonEntityService.toJSON(request);
 
-		String responseJSON = HTTPClient.post(request);
+		PostRequest postRequest = requestFactory.createPostRequest(ACCESS_TOKEN_URI, null, requestJSON);
+
+		String responseJSON = HTTPClient.post(postRequest);
 		RetrieveAccessTokenResponse response = jsonEntityService.toEntity(responseJSON, RetrieveAccessTokenResponse.class);
 
 		String accessToken = response.getAccess_token();
