@@ -1,17 +1,17 @@
 package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import de.jochor.lib.json4j.JSONBindingService;
-import de.jochor.lib.json4j.gson.JSONBindingServiceGson;
+import de.jochor.lib.json4j.JSONBindingServiceFactory;
 
 /**
  *
  * <p>
  * <b>Started:</b> 2015-08-25
  * </p>
+ * 
  * @author Jochen Hormes
  *
  */
@@ -24,12 +24,7 @@ public class RetrieveListResponseTest {
 	private static final String type = "list";
 	private static final int revision = 10;
 
-	private JSONBindingService jsonEntityService;
-
-	@Before
-	public void setUp() {
-		jsonEntityService = new JSONBindingServiceGson();
-	}
+	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	@Test
 	public void testJSONRoundtrip() {

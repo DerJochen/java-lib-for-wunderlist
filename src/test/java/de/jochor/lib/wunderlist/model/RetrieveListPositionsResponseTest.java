@@ -3,17 +3,17 @@ package de.jochor.lib.wunderlist.model;
 import java.util.Arrays;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import de.jochor.lib.json4j.JSONBindingService;
-import de.jochor.lib.json4j.gson.JSONBindingServiceGson;
+import de.jochor.lib.json4j.JSONBindingServiceFactory;
 
 /**
  *
  * <p>
  * <b>Started:</b> 2015-08-25
  * </p>
+ * 
  * @author Jochen Hormes
  *
  */
@@ -23,12 +23,7 @@ public class RetrieveListPositionsResponseTest {
 	private static final int revision = 124;
 	private static final String type = "task_position";
 
-	private JSONBindingService jsonEntityService;
-
-	@Before
-	public void setUp() {
-		jsonEntityService = new JSONBindingServiceGson();
-	}
+	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	@Test
 	public void testJSONRoundtrip() {
