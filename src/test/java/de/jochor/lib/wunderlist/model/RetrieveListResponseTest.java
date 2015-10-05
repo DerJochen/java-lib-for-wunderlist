@@ -29,6 +29,7 @@ public class RetrieveListResponseTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
+		// Switch off outputs from the service factory
 		System.setProperty("jochor.servicefactory.silence", "true");
 	}
 
