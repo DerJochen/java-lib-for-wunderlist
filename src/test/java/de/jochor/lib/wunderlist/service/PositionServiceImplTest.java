@@ -10,6 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.junit.HTTPClientJUnit;
+import de.jochor.lib.servicefactory.ServiceFactory;
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 
@@ -35,7 +36,7 @@ public class PositionServiceImplTest {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		// Switch off outputs from the service factory
-		System.setProperty("jochor.servicefactory.silence", "true");
+		System.setProperty(ServiceFactory.SILENT_MODE, "true");
 
 		AUTHORIZATION.setClientId("the applications id");
 		AUTHORIZATION.setUserToken("the users access token");

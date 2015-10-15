@@ -23,17 +23,16 @@ public class RequestFactoryImpl implements RequestFactory {
 
 	@Override
 	public PostRequest createPostRequest(URI uri, Authorization authorization, String body) {
-		PostRequest request = new PostRequest(uri);
+		PostRequest request = new PostRequest(uri, body);
 		addAuthorization(request, authorization);
-		request.setBody(body);
+
 		return request;
 	}
 
 	@Override
 	public PutRequest createPutRequest(URI uri, Authorization authorization, String body) {
-		PutRequest request = new PutRequest(uri);
+		PutRequest request = new PutRequest(uri, body);
 		addAuthorization(request, authorization);
-		request.setBody(body);
 
 		return request;
 	}
