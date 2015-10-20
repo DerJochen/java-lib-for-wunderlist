@@ -12,10 +12,13 @@ import java.net.URI;
  */
 public interface URIProvider {
 
-	URI getRequestAuthorizationURI(String clientID, String callBack, String state);
+	// TODO JavaDoc
+	URI getRequestAuthorizationURI(String clientID, String callback, String state);
 
+	// TODO JavaDoc
 	URI getAccessTokenURI();
 
+	// TODO JavaDoc
 	URI getWunderlistCallBackURI();
 
 }

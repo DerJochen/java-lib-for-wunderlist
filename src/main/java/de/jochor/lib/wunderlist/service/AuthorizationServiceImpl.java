@@ -1,9 +1,6 @@
 package de.jochor.lib.wunderlist.service;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 
 import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
@@ -25,10 +22,6 @@ import de.jochor.lib.wunderlist.model.RetrieveAccessTokenResponse;
  */
 public class AuthorizationServiceImpl implements AuthorizationService {
 
-	private static final String REDIRECT_TEMPLATE = "https://www.wunderlist.com/oauth/authorize?client_id=%s&redirect_uri=%s&state=%s";
-
-	private static final URI ACCESS_TOKEN_URI = URI.create("https://www.wunderlist.com/oauth/access_token");
-
 	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
@@ -42,28 +35,21 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String buildAuthorisationRequestURL(String clientId, String callbackURL, String state) {
-		try {
-			String callbackURLEnc = URLEncoder.encode(callbackURL, StandardCharsets.UTF_8.name());
-			String stateEnc = URLEncoder.encode(state, StandardCharsets.UTF_8.name());
-
-			String redirectURL = String.format(REDIRECT_TEMPLATE, clientId, callbackURLEnc, stateEnc);
-
-			return redirectURL;
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
+	public URI buildAuthorisationRequestURI(String clientID, String callBack, String state) {
+		URI redirectURI = uriProvider.getRequestAuthorizationURI(clientID, callBack, state);
+		return redirectURI;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String retrieveAccessToken(String clientId, String clientSecrete, String code) {
-		RetrieveAccessTokenRequest request = new RetrieveAccessTokenRequest(clientId, clientSecrete, code);
+	public String retrieveAccessToken(String clientID, String clientSecrete, String code) {
+		RetrieveAccessTokenRequest request = new RetrieveAccessTokenRequest(clientID, clientSecrete, code);
 		String requestJSON = jsonEntityService.toJSON(request);
 
-		PostRequest postRequest = requestFactory.createPostRequest(ACCESS_TOKEN_URI, null, requestJSON);
+		URI accessTokenURI = uriProvider.getAccessTokenURI();
+		PostRequest postRequest = requestFactory.createPostRequest(accessTokenURI, null, requestJSON);
 
 		String responseJSON = HTTPClient.post(postRequest);
 		RetrieveAccessTokenResponse response = jsonEntityService.toEntity(responseJSON, RetrieveAccessTokenResponse.class);

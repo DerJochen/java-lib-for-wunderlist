@@ -1,5 +1,7 @@
 package de.jochor.lib.wunderlist.service;
 
+import java.net.URI;
+
 /**
  *
  * <p>
@@ -14,15 +16,15 @@ public interface AuthorizationService {
 	/**
 	 * Builds the authorization request URL to redirect the user to.
 	 *
-	 * @param clientId
+	 * @param clientID
 	 *            The Client ID you received from Wunderlist when you registered your application.
-	 * @param callbackURL
-	 *            The URL in your app where users will be sent after authorization.
+	 * @param callback
+	 *            The address in your application where users will be redirected to after authorization.
 	 * @param state
 	 *            An unguessable random string. It is used to protect against cross-site request forgery attacks.
-	 * @return Authorization request URL
+	 * @return Authorization request URI
 	 */
-	String buildAuthorisationRequestURL(String clientId, String callbackURL, String state);
+	URI buildAuthorisationRequestURI(String clientID, String callBack, String state);
 
 	/**
 	 *
