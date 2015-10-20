@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.PostRequest;
@@ -33,6 +34,9 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
+
+	@Setter
+	private URIProvider uriProvider;
 
 	/**
 	 * {@inheritDoc}
