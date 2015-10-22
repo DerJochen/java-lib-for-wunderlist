@@ -25,15 +25,14 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
  */
 public class PositionsServiceImpl implements PositionsService {
 
-	private HTTPClient HTTPClient = HTTPClientFactory.create();
+	private HTTPClient httpClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
-	// TODO Instantiate the DefaultURIProvider
 	@Setter
-	private URIProvider uriProvider;
+	private URIProvider uriProvider = new DefaultURIProvider();
 
 	/**
 	 * {@inheritDoc}
@@ -43,7 +42,7 @@ public class PositionsServiceImpl implements PositionsService {
 		URI uri = uriProvider.getPositionsRetrieveURI(id);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
-		String responseJSON = HTTPClient.get(getRequest);
+		String responseJSON = httpClient.get(getRequest);
 		RetrieveListPositionsResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListPositionsResponse.class);
 
 		return response;
@@ -60,7 +59,7 @@ public class PositionsServiceImpl implements PositionsService {
 
 		PutRequest putRequest = requestFactory.createPutRequest(uri, authorization, requestJSON);
 
-		String responseJSON = HTTPClient.put(putRequest);
+		String responseJSON = httpClient.put(putRequest);
 		UpdateListPositionsResponse response = jsonEntityService.toEntity(responseJSON, UpdateListPositionsResponse.class);
 
 		return response;

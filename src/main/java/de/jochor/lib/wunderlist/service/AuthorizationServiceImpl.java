@@ -22,22 +22,21 @@ import de.jochor.lib.wunderlist.model.RetrieveAccessTokenResponse;
  */
 public class AuthorizationServiceImpl implements AuthorizationService {
 
-	private HTTPClient HTTPClient = HTTPClientFactory.create();
+	private HTTPClient httpClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
-	// TODO Instantiate the DefaultURIProvider
 	@Setter
-	private URIProvider uriProvider;
+	private URIProvider uriProvider = new DefaultURIProvider();
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI buildAuthorisationRequestURI(String clientID, String callBack, String state) {
-		URI redirectURI = uriProvider.getRequestAuthorizationURI(clientID, callBack, state);
+	public URI buildAuthorisationRequestURI(String clientID, String callback, String state) {
+		URI redirectURI = uriProvider.getRequestAuthorizationURI(clientID, callback, state);
 		return redirectURI;
 	}
 
@@ -52,7 +51,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		URI accessTokenURI = uriProvider.getAccessTokenURI();
 		PostRequest postRequest = requestFactory.createPostRequest(accessTokenURI, null, requestJSON);
 
-		String responseJSON = HTTPClient.post(postRequest);
+		String responseJSON = httpClient.post(postRequest);
 		RetrieveAccessTokenResponse response = jsonEntityService.toEntity(responseJSON, RetrieveAccessTokenResponse.class);
 
 		String accessToken = response.getAccess_token();

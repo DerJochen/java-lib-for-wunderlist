@@ -18,41 +18,109 @@ import java.util.Properties;
  */
 public class DefaultURIProvider implements URIProvider {
 
-	private Properties uris;
+	private static final String WUNDERLIST_URIS_PROPERTIES = "wunderlist-uris.properties";
+
+	private final Properties uris = new Properties();
 
 	public DefaultURIProvider() {
-		uris = new Properties();
-		InputStream inStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("wunderlist-uris.properties");
-		try {
+		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+		try (InputStream inStream = contextClassLoader.getResourceAsStream(WUNDERLIST_URIS_PROPERTIES)) {
 			uris.load(inStream);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
+	/* Getters for Authorization service URIs */
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public URI getRequestAuthorizationURI(String clientID, String callback, String state) {
-		String requestAuthorizationTpl = uris.getProperty("url.auth.wl.redirect.tpl");
+		String uriTpl = uris.getProperty(PROP_AUTHORIZATION_REDIRECT);
 		try {
 			String utf8 = StandardCharsets.UTF_8.name();
 			String clientIDEnc = URLEncoder.encode(clientID, utf8);
 			String callbackEnc = URLEncoder.encode(callback, utf8);
 			String stateEnc = URLEncoder.encode(state, utf8);
 
-			String requestAuthorization = String.format(requestAuthorizationTpl, clientIDEnc, callbackEnc, stateEnc);
-			URI requestAuthorizationURI = URI.create(requestAuthorization);
+			String uriString = String.format(uriTpl, clientIDEnc, callbackEnc, stateEnc);
+			URI uri = URI.create(uriString);
 
-			return requestAuthorizationURI;
+			return uri;
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public URI getAccessTokenURI() {
-		String accessToken = uris.getProperty("url.auth.wl.accesstoken");
-		URI accessTokenURI = URI.create(accessToken);
-		return accessTokenURI;
+		String uriString = uris.getProperty(PROP_AUTHORIZATION_ACCESSTOKEN);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/* Getters for List service URIs */
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getListRetrieveAllURI() {
+		String uriString = uris.getProperty(PROP_LIST_RETRIEVE_ALL);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getListRetrieveURI(int listID) {
+		String uriTpl = uris.getProperty(PROP_LIST_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, Integer.valueOf(listID));
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	/* Getters for Positions service URIs */
+
+	@Override
+	public URI getPositionsRetrieveURI(int id) {
+		String uriTpl = uris.getProperty(PROP_POSITIONS_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, Integer.valueOf(id));
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getPositionsUpdateURI(int id) {
+		String uriTpl = uris.getProperty(PROP_POSITIONS_UPDATE_ONE);
+		String uriString = String.format(uriTpl, Integer.valueOf(id));
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/* Getters for Webhook service URIs */
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getWebhookCreateURI() {
+		String uriString = uris.getProperty(PROP_WEBHOOK_CREATE_ONE);
+		URI uri = URI.create(uriString);
+		return uri;
 	}
 
 }

@@ -25,15 +25,14 @@ import de.jochor.lib.wunderlist.model.Webhook;
  */
 public class WebhookServiceImpl implements WebhookService {
 
-	private HTTPClient HTTPClient = HTTPClientFactory.create();
+	private HTTPClient httpClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
-	// TODO Instantiate the DefaultURIProvider
 	@Setter
-	private URIProvider uriProvider;
+	private URIProvider uriProvider = new DefaultURIProvider();
 
 	/**
 	 * {@inheritDoc}
@@ -42,10 +41,10 @@ public class WebhookServiceImpl implements WebhookService {
 	public CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization) {
 		String body = jsonEntityService.toJSON(request);
 
-		URI uri = uriProvider.getListRetrieveAllURI();
+		URI uri = uriProvider.getWebhookCreateURI();
 		PostRequest postRequest = requestFactory.createPostRequest(uri, authorization, body);
 
-		String responseJSON = HTTPClient.post(postRequest);
+		String responseJSON = httpClient.post(postRequest);
 
 		CreateWebhookResponse response = jsonEntityService.toEntity(responseJSON, CreateWebhookResponse.class);
 

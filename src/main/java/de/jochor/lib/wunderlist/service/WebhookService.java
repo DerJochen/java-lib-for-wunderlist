@@ -19,6 +19,7 @@ import de.jochor.lib.wunderlist.model.Webhook;
 public interface WebhookService {
 
 	/**
+	 * TODO JavaDoc
 	 *
 	 * @param request
 	 *            {@link CreateWebhookRequest} object
@@ -29,21 +30,24 @@ public interface WebhookService {
 	CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization);
 
 	/**
+	 * TODO JavaDoc
 	 *
 	 * @param id
 	 *            ID of the web hook to delete
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
-	 * @return
+	 * @return TODO
 	 */
 	boolean delete(int id, Authorization authorization);
 
 	/**
+	 * TODO JavaDoc
 	 *
 	 * @param listId
+	 *            TODO
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
-	 * @return
+	 * @return TODO
 	 */
 	List<Webhook> listWebhooks(int listId, Authorization authorization);
 

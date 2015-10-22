@@ -22,15 +22,14 @@ import de.jochor.lib.wunderlist.model.RetrieveListResponse;
  */
 public class ListServiceImpl implements ListService {
 
-	private HTTPClient HTTPClient = HTTPClientFactory.create();
+	private HTTPClient httpClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
-	// TODO Instantiate the DefaultURIProvider
 	@Setter
-	private URIProvider uriProvider;
+	private URIProvider uriProvider = new DefaultURIProvider();
 
 	/**
 	 * {@inheritDoc}
@@ -40,7 +39,7 @@ public class ListServiceImpl implements ListService {
 		URI uri = uriProvider.getListRetrieveAllURI();
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
-		String responseJSON = HTTPClient.get(getRequest);
+		String responseJSON = httpClient.get(getRequest);
 		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
 
 		return response;
@@ -54,7 +53,7 @@ public class ListServiceImpl implements ListService {
 		URI uri = uriProvider.getListRetrieveURI(id);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
-		String responseJSON = HTTPClient.get(getRequest);
+		String responseJSON = httpClient.get(getRequest);
 		RetrieveListResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse.class);
 
 		return response;
