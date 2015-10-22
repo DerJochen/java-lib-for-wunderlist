@@ -49,8 +49,8 @@ public class ListServiceImpl implements ListService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RetrieveListResponse retrieve(int id, Authorization authorization) {
-		URI uri = uriProvider.getListRetrieveURI(id);
+	public RetrieveListResponse retrieve(int listID, Authorization authorization) {
+		URI uri = uriProvider.getListRetrieveURI(listID);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = httpClient.get(getRequest);

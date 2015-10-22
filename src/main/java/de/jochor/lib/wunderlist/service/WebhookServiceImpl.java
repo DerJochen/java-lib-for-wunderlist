@@ -1,11 +1,12 @@
 package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
-import java.util.List;
 
 import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
+import de.jochor.lib.http4j.model.DeleteRequest;
+import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
@@ -38,6 +39,21 @@ public class WebhookServiceImpl implements WebhookService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Webhook[] retrieveAll(int listID, Authorization authorization) {
+		URI uri = uriProvider.getWebhookRetrieveAllURI(listID);
+		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
+
+		String responseJSON = httpClient.get(getRequest);
+
+		Webhook[] webhooks = jsonEntityService.toEntity(responseJSON, Webhook[].class);
+
+		return webhooks;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization) {
 		String body = jsonEntityService.toJSON(request);
 
@@ -55,18 +71,12 @@ public class WebhookServiceImpl implements WebhookService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean delete(int id, Authorization authorization) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public boolean delete(int webhookID, Authorization authorization) {
+		URI uri = uriProvider.getWebhookDeleteURI(webhookID);
+		DeleteRequest deleteRequest = requestFactory.createDeleteRequest(uri, authorization);
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<Webhook> listWebhooks(int listId, Authorization authorization) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		// httpClient.delete(deleteRequest);
 
+		return true;
+	}
 }

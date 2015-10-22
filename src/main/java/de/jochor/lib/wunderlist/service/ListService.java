@@ -26,12 +26,12 @@ public interface ListService {
 	/**
 	 * GET a.wunderlist.com/api/v1/lists/:id
 	 *
-	 * @param id
+	 * @param listID
 	 *            ID of the List
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
 	 * @return {@link RetrieveListResponse} for the requested list
 	 */
-	RetrieveListResponse retrieve(int id, Authorization authorization);
+	RetrieveListResponse retrieve(int listID, Authorization authorization);
 
 }

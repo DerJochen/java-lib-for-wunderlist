@@ -19,7 +19,7 @@ import de.jochor.lib.servicefactory.ServiceFactory;
  */
 public class RetrieveListResponseTest {
 
-	private static final int id = 83526310;
+	public static final int id = 83526310;
 	private static final String createdAt = "2013-08-30T08:29:46.203Z";
 	private static final String title = "Read Later";
 	private static final String listType = "list";

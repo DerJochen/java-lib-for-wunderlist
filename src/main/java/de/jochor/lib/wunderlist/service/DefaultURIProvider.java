@@ -117,8 +117,30 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public URI getWebhookRetrieveAllURI(int listID) {
+		String uriTpl = uris.getProperty(PROP_WEBHOOK_RETRIEVE_ALL);
+		String uriString = String.format(uriTpl, Integer.valueOf(listID));
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public URI getWebhookCreateURI() {
 		String uriString = uris.getProperty(PROP_WEBHOOK_CREATE_ONE);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getWebhookDeleteURI(int webhookID) {
+		String uriTpl = uris.getProperty(PROP_WEBHOOK_DELETE_ONE);
+		String uriString = String.format(uriTpl, Integer.valueOf(webhookID));
 		URI uri = URI.create(uriString);
 		return uri;
 	}

@@ -2,6 +2,8 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
+import de.jochor.lib.wunderlist.model.Webhook;
+
 /**
  *
  * <p>
@@ -25,7 +27,9 @@ public interface URIProvider {
 	public static final String PROP_POSITIONS_UPDATE_ONE = "url.wunderlist.positions.update.one.tpl";
 
 	// Property names for the Webhook service
+	public static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.create.all.tpl";
 	public static final String PROP_WEBHOOK_CREATE_ONE = "url.wunderlist.webhook.create.one";
+	public static final String PROP_WEBHOOK_DELETE_ONE = "url.wunderlist.webhook.delete.one.tpl";
 
 	/* Getters for Authorization service URIs */
 
@@ -91,10 +95,28 @@ public interface URIProvider {
 	/* Getters for Webhook service URIs */
 
 	/**
-	 * Getter for the URI to create a new webhook at.
+	 * Creates the URI to request all {@link Webhook}s for a specific list.
 	 *
-	 * @return URI to create a new webhook at
+	 * @param listID
+	 *            ID of the list to request the {@link Webhook}s for
+	 * @return URI to request the {@link Webhook}s
+	 */
+	URI getWebhookRetrieveAllURI(int listID);
+
+	/**
+	 * Getter for the URI to create a new {@link Webhook} at.
+	 *
+	 * @return URI to create a new {@link Webhook} at
 	 */
 	URI getWebhookCreateURI();
+
+	/**
+	 * Creates the URI to delete a specific {@link Webhook}.
+	 *
+	 * @param webhookID
+	 *            ID of the {@link Webhook} to delete
+	 * @return URI to delete the {@link Webhook}
+	 */
+	URI getWebhookDeleteURI(int webhookID);
 
 }

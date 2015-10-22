@@ -1,7 +1,5 @@
 package de.jochor.lib.wunderlist.service;
 
-import java.util.List;
-
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.CreateWebhookRequest;
 import de.jochor.lib.wunderlist.model.CreateWebhookResponse;
@@ -19,7 +17,20 @@ import de.jochor.lib.wunderlist.model.Webhook;
 public interface WebhookService {
 
 	/**
-	 * Creates a new webhook specified by the request object given.
+	 * Retrieves all {@link Webhook}s registered for the specified list.<br>
+	 * GET a.wunderlist.com/api/v1/webhooks
+	 *
+	 * @param listID
+	 *            ID of the list to request the {@link Webhook}s for
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return An array of all registered {@link Webhook}s
+	 */
+	Webhook[] retrieveAll(int listID, Authorization authorization);
+
+	/**
+	 * Creates a new {@link Webhook} specified by the request object given.<br>
+	 * POST a.wunderlist.com/api/v1/webhoooks
 	 *
 	 * @param request
 	 *            {@link CreateWebhookRequest} object
@@ -30,25 +41,16 @@ public interface WebhookService {
 	CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization);
 
 	/**
-	 * Deletes the webhook specified by the ID given.
+	 * Deletes the {@link Webhook} specified by the ID given.<br>
+	 * DELETE a.wunderlist.com/api/v1/webhooks/:id<br>
+	 * Response: Status 204
 	 *
 	 * @param webhookID
-	 *            ID of the web hook to delete
+	 *            ID of the {@link Webhook} to delete
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
 	 * @return True if the deletion was successful, false otherwise
 	 */
 	boolean delete(int webhookID, Authorization authorization);
-
-	/**
-	 * Retrieves all webhooks registered for the specified list.
-	 *
-	 * @param listID
-	 *            ID of the list to request the webhooks for
-	 * @param authorization
-	 *            {@link Authorization} containing client ID and access token
-	 * @return A list of all registered webhooks
-	 */
-	List<Webhook> listWebhooks(int listID, Authorization authorization);
 
 }

@@ -3,6 +3,7 @@ package de.jochor.lib.wunderlist.service;
 import java.net.URI;
 
 import de.jochor.lib.http4j.model.BaseRequest;
+import de.jochor.lib.http4j.model.DeleteRequest;
 import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.http4j.model.PutRequest;
@@ -13,6 +14,13 @@ public class RequestFactoryImpl implements RequestFactory {
 	private static final String CLIENT_ID = "X-Client-ID";
 
 	private static final String ACCESS_TOKEN = "X-Access-Token";
+
+	@Override
+	public DeleteRequest createDeleteRequest(URI uri, Authorization authorization) {
+		DeleteRequest request = new DeleteRequest(uri);
+		addAuthorization(request, authorization);
+		return request;
+	}
 
 	@Override
 	public GetRequest createGetRequest(URI uri, Authorization authorization) {
