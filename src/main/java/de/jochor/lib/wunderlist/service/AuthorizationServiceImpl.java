@@ -28,6 +28,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
+	// TODO Instantiate the DefaultURIProvider
 	@Setter
 	private URIProvider uriProvider;
 

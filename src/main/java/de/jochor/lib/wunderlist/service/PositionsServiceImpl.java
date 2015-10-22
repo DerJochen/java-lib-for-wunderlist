@@ -2,6 +2,7 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
+import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.GetRequest;
@@ -24,24 +25,22 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
  */
 public class PositionsServiceImpl implements PositionsService {
 
-	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/list_positions/%d";
-
-	private static final String UPDATE_URI = "a.wunderlist.com/api/v1/list_positions/%d";
-
 	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
+	// TODO Instantiate the DefaultURIProvider
+	@Setter
+	private URIProvider uriProvider;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public RetrieveListPositionsResponse retrieve(int id, Authorization authorization) {
-		String uriString = String.format(RETRIEVE_URI, id);
-		URI uri = URI.create(uriString);
-
+		URI uri = uriProvider.getPositionsRetrieveURI(id);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = HTTPClient.get(getRequest);
@@ -55,9 +54,7 @@ public class PositionsServiceImpl implements PositionsService {
 	 */
 	@Override
 	public UpdateListPositionsResponse update(int id, int[] values, int revision, Authorization authorization) {
-		String uriString = String.format(UPDATE_URI, id);
-		URI uri = URI.create(uriString);
-
+		URI uri = uriProvider.getPositionsUpdateURI(id);
 		UpdateListPositionsRequest request = new UpdateListPositionsRequest(values, revision);
 		String requestJSON = jsonEntityService.toJSON(request);
 

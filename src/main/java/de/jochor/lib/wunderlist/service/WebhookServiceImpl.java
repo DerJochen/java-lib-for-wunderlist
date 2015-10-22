@@ -3,6 +3,7 @@ package de.jochor.lib.wunderlist.service;
 import java.net.URI;
 import java.util.List;
 
+import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.PostRequest;
@@ -24,13 +25,15 @@ import de.jochor.lib.wunderlist.model.Webhook;
  */
 public class WebhookServiceImpl implements WebhookService {
 
-	private static final URI CREATE_URI = URI.create("a.wunderlist.com/api/v1/webhoooks");
-
 	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
+
+	// TODO Instantiate the DefaultURIProvider
+	@Setter
+	private URIProvider uriProvider;
 
 	/**
 	 * {@inheritDoc}
@@ -39,7 +42,8 @@ public class WebhookServiceImpl implements WebhookService {
 	public CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization) {
 		String body = jsonEntityService.toJSON(request);
 
-		PostRequest postRequest = requestFactory.createPostRequest(CREATE_URI, authorization, body);
+		URI uri = uriProvider.getListRetrieveAllURI();
+		PostRequest postRequest = requestFactory.createPostRequest(uri, authorization, body);
 
 		String responseJSON = HTTPClient.post(postRequest);
 

@@ -2,6 +2,7 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
+import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.GetRequest;
@@ -21,22 +22,23 @@ import de.jochor.lib.wunderlist.model.RetrieveListResponse;
  */
 public class ListServiceImpl implements ListService {
 
-	private static final URI RETRIEVE_ALL_URI = URI.create("a.wunderlist.com/api/v1/lists");
-
-	private static final String RETRIEVE_URI = "a.wunderlist.com/api/v1/lists/%d";
-
 	private HTTPClient HTTPClient = HTTPClientFactory.create();
 
 	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
 
 	private RequestFactory requestFactory = new RequestFactoryImpl();
 
+	// TODO Instantiate the DefaultURIProvider
+	@Setter
+	private URIProvider uriProvider;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public RetrieveListResponse[] retrieveAll(Authorization authorization) {
-		GetRequest getRequest = requestFactory.createGetRequest(RETRIEVE_ALL_URI, authorization);
+		URI uri = uriProvider.getListRetrieveAllURI();
+		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = HTTPClient.get(getRequest);
 		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
@@ -49,9 +51,7 @@ public class ListServiceImpl implements ListService {
 	 */
 	@Override
 	public RetrieveListResponse retrieve(int id, Authorization authorization) {
-		String uriString = String.format(RETRIEVE_URI, id);
-		URI uri = URI.create(uriString);
-
+		URI uri = uriProvider.getListRetrieveURI(id);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = HTTPClient.get(getRequest);
