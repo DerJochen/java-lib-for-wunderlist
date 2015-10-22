@@ -75,7 +75,7 @@ public class WebhookServiceImpl implements WebhookService {
 		URI uri = uriProvider.getWebhookDeleteURI(webhookID);
 		DeleteRequest deleteRequest = requestFactory.createDeleteRequest(uri, authorization);
 
-		// httpClient.delete(deleteRequest);
+		httpClient.delete(deleteRequest);
 
 		return true;
 	}
