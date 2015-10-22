@@ -19,7 +19,7 @@ public interface TaskService {
 	 * GET a.wunderlist.com/api/v1/tasks/:id
 	 *
 	 * @param id
-	 *            TODO
+	 *            ID of the task to retrieve
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
 	 * @return Array of {@link RetrieveListResponse}s for all lists

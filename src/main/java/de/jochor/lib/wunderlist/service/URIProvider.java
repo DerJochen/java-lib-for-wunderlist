@@ -30,69 +30,70 @@ public interface URIProvider {
 	/* Getters for Authorization service URIs */
 
 	/**
-	 * TODO JavaDoc
+	 * Creates the URI to request authorization for access to the users lists. The user has to be redirected to this
+	 * URI.
 	 *
 	 * @param clientID
-	 *            TODO
+	 *            Wunderlist ID of the client software
 	 * @param callback
-	 *            TODO
+	 *            Callback address of the client software
 	 * @param state
-	 *            TODO
-	 * @return TODO
+	 *            Unguessable string
+	 * @return Authorization request URI containing the given values
 	 */
 	URI getAuthorizationRequestURI(String clientID, String callback, String state);
 
 	/**
-	 * TODO JavaDoc
+	 * Getter for the URI to request the users access token at.
 	 *
-	 * @return TODO
+	 * @return URI to request the users access token at
 	 */
 	URI getAuthorizationAccessTokenURI();
 
 	/* Getters for List service URIs */
 
 	/**
-	 * TODO JavaDoc
+	 * Getter for the URI to retrieve all lists of the user.
 	 *
-	 * @return TODO
+	 * @return URI to retrieve all lists of the user
 	 */
 	URI getListRetrieveAllURI();
 
 	/**
-	 * TODO JavaDoc
+	 * Creates the URI to retrieve a specific list.
 	 *
 	 * @param listID
-	 *            TODO
-	 * @return TODO
+	 *            ID of the list to retrieve
+	 * @return URI to request a specific list
 	 */
 	URI getListRetrieveURI(int listID);
 
 	/* Getters for Positions service URIs */
 
 	/**
-	 * TODO JavaDoc
+	 * Creates the URI to retrieve the positions of a specific list.
 	 *
-	 * @param id
-	 *            TODO
-	 * @return TODO
+	 * @param listID
+	 *            ID of the list to retrieve the positions of
+	 * @return URI to request the positions of a specific list
 	 */
-	URI getPositionsRetrieveURI(int id);
+	URI getPositionsRetrieveURI(int listID);
 
 	/**
-	 * TODO JavaDoc
+	 * Creates the URI to update the positions of a specific list.
 	 *
-	 * @param id
-	 *            TODO
-	 * @return TODO
+	 * @param listID
+	 *            ID of the list to retrieve the positions of
+	 * @return URI to update the positions of a specific list
 	 */
-	URI getPositionsUpdateURI(int id);
+	URI getPositionsUpdateURI(int listID);
 
 	/* Getters for Webhook service URIs */
 
 	/**
-	 * TODO JavaDoc
+	 * Getter for the URI to create a new webhook at.
 	 *
-	 * @return TODO
+	 * @return URI to create a new webhook at
 	 */
 	URI getWebhookCreateURI();
 
