@@ -40,14 +40,14 @@ public interface URIProvider {
 	 *            TODO
 	 * @return TODO
 	 */
-	URI getRequestAuthorizationURI(String clientID, String callback, String state);
+	URI getAuthorizationRequestURI(String clientID, String callback, String state);
 
 	/**
 	 * TODO JavaDoc
 	 *
 	 * @return TODO
 	 */
-	URI getAccessTokenURI();
+	URI getAuthorizationAccessTokenURI();
 
 	/* Getters for List service URIs */
 

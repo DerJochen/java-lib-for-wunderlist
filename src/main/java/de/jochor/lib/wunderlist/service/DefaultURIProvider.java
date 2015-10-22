@@ -37,7 +37,7 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getRequestAuthorizationURI(String clientID, String callback, String state) {
+	public URI getAuthorizationRequestURI(String clientID, String callback, String state) {
 		String uriTpl = uris.getProperty(PROP_AUTHORIZATION_REDIRECT);
 		try {
 			String utf8 = StandardCharsets.UTF_8.name();
@@ -58,7 +58,7 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getAccessTokenURI() {
+	public URI getAuthorizationAccessTokenURI() {
 		String uriString = uris.getProperty(PROP_AUTHORIZATION_ACCESSTOKEN);
 		URI uri = URI.create(uriString);
 		return uri;

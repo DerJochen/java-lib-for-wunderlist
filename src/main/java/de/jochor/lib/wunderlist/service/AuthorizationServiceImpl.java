@@ -36,7 +36,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 	 */
 	@Override
 	public URI buildAuthorisationRequestURI(String clientID, String callback, String state) {
-		URI redirectURI = uriProvider.getRequestAuthorizationURI(clientID, callback, state);
+		URI redirectURI = uriProvider.getAuthorizationRequestURI(clientID, callback, state);
 		return redirectURI;
 	}
 
@@ -48,7 +48,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 		RetrieveAccessTokenRequest request = new RetrieveAccessTokenRequest(clientID, clientSecrete, code);
 		String requestJSON = jsonEntityService.toJSON(request);
 
-		URI accessTokenURI = uriProvider.getAccessTokenURI();
+		URI accessTokenURI = uriProvider.getAuthorizationAccessTokenURI();
 		PostRequest postRequest = requestFactory.createPostRequest(accessTokenURI, null, requestJSON);
 
 		String responseJSON = httpClient.post(postRequest);
