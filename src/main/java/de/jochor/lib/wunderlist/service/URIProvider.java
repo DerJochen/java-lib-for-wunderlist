@@ -5,6 +5,7 @@ import java.net.URI;
 import de.jochor.lib.wunderlist.model.Webhook;
 
 /**
+ * Interface of the {@link URIProvider} for the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-10-20

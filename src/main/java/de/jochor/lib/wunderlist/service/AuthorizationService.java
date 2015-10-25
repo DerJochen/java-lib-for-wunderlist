@@ -3,6 +3,7 @@ package de.jochor.lib.wunderlist.service;
 import java.net.URI;
 
 /**
+ * Interface of the {@link AuthorizationService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-09-04

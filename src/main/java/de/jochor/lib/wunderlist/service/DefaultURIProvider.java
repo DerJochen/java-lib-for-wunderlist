@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 /**
+ * Default implementation of the {@link URIProvider} for the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-10-20

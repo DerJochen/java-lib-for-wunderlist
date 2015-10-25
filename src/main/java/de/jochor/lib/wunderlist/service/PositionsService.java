@@ -5,6 +5,7 @@ import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
 
 /**
+ * Interface of the {@link PositionsService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-08-19

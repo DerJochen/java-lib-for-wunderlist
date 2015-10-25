@@ -4,6 +4,7 @@ import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 
 /**
+ * Interface of the {@link ListService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-08-19

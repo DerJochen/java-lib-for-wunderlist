@@ -15,6 +15,7 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsRequest;
 import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
 
 /**
+ * Implementation of the {@link PositionsService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-08-24

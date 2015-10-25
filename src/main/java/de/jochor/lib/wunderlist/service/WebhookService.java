@@ -6,6 +6,7 @@ import de.jochor.lib.wunderlist.model.CreateWebhookResponse;
 import de.jochor.lib.wunderlist.model.Webhook;
 
 /**
+ * Interface of the {@link WebhookService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-08-19

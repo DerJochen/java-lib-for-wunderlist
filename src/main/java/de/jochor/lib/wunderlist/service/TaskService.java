@@ -5,6 +5,7 @@ import de.jochor.lib.wunderlist.model.RetrieveListResponse;
 import de.jochor.lib.wunderlist.model.Task;
 
 /**
+ * Interface of the {@link TaskService} of the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-09-23
