@@ -1,12 +1,6 @@
 package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import de.jochor.lib.json4j.JSONBindingService;
-import de.jochor.lib.json4j.JSONBindingServiceFactory;
-import de.jochor.lib.servicefactory.ServiceFactory;
 
 /**
  *
@@ -17,7 +11,7 @@ import de.jochor.lib.servicefactory.ServiceFactory;
  * @author Jochen Hormes
  *
  */
-public class RetrieveListResponseTest {
+public class RetrieveListResponseTest extends AbstractRoundtripTest<RetrieveListResponse> {
 
 	public static final int id = 83526310;
 	private static final String createdAt = "2013-08-30T08:29:46.203Z";
@@ -26,28 +20,8 @@ public class RetrieveListResponseTest {
 	private static final String type = "list";
 	private static final int revision = 10;
 
-	private JSONBindingService jsonEntityService = JSONBindingServiceFactory.create();
-
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		// Switch off outputs from the service factory
-		System.setProperty(ServiceFactory.SILENT_MODE, "true");
-	}
-
-	@Test
-	public void testJSONRoundtrip() {
-		RetrieveListResponse retrieveListResponse = createListResponse();
-
-		String json = jsonEntityService.toJSON(retrieveListResponse);
-		Assert.assertNotNull(json);
-		Assert.assertFalse(json.isEmpty());
-
-		RetrieveListResponse retrieveListResponse2 = jsonEntityService.toEntity(json, RetrieveListResponse.class);
-
-		assertEquals(retrieveListResponse, retrieveListResponse2);
-	}
-
-	public static RetrieveListResponse createListResponse() {
+	@Override
+	protected RetrieveListResponse createEntity() {
 		RetrieveListResponse retrieveListResponse = new RetrieveListResponse();
 		retrieveListResponse.setId(id);
 		retrieveListResponse.setTitle(title);
@@ -58,17 +32,8 @@ public class RetrieveListResponseTest {
 		return retrieveListResponse;
 	}
 
-	public static String createListJSON(int number) {
-		return "{\"id\": " + (id + number) + ", " //
-				+ "\"created_at\": \"" + createdAt + "\",  " //
-				+ "\"title\": \"" + title + number + "\",  " //
-				+ "\"list_type\": \"" + listType + "\",  " //
-				+ "\"type\": \"" + type + "\",  " //
-				+ "\"revision\": " + (revision + number) //
-				+ "}";
-	}
-
-	public static void assertEquals(RetrieveListResponse expected, RetrieveListResponse actual) {
+	@Override
+	protected void assertEquals(RetrieveListResponse expected, RetrieveListResponse actual) {
 		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected.getId(), actual.getId());
@@ -77,16 +42,6 @@ public class RetrieveListResponseTest {
 		Assert.assertEquals(expected.getList_type(), actual.getList_type());
 		Assert.assertEquals(expected.getType(), actual.getType());
 		Assert.assertEquals(expected.getRevision(), actual.getRevision());
-	}
-
-	public static void checkListResponse(RetrieveListResponse retrieveListResponse, int number) {
-		Assert.assertNotNull(retrieveListResponse);
-		Assert.assertEquals(id + number, retrieveListResponse.getId());
-		Assert.assertEquals(createdAt, retrieveListResponse.getCreated_at());
-		Assert.assertEquals(title + number, retrieveListResponse.getTitle());
-		Assert.assertEquals(listType, retrieveListResponse.getList_type());
-		Assert.assertEquals(type, retrieveListResponse.getType());
-		Assert.assertEquals(revision + number, retrieveListResponse.getRevision());
 	}
 
 }

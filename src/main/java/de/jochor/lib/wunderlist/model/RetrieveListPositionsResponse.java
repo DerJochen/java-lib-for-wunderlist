@@ -15,6 +15,7 @@ import lombok.Setter;
  * <p>
  * <b>Started:</b> 2015-08-19
  * </p>
+ *
  * @author Jochen Hormes
  *
  */
@@ -24,10 +25,10 @@ public class RetrieveListPositionsResponse {
 
 	private int id;
 
-	private int[] values;
-
 	private int revision;
 
 	private String type;
+
+	private int[] values;
 
 }

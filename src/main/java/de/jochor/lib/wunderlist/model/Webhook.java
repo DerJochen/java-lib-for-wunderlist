@@ -5,11 +5,22 @@ import lombok.Setter;
 
 /**
  * json<br>
+ * {<br>
+ * "id": 62,<br>
+ * "list_id": 105743947,<br>
+ * "membership_id": 49876097,<br>
+ * "membership_type": "Membership",<br>
+ * "url": "https:/yourhost.com/foo",<br>
+ * "processor_type": "generic",<br>
+ * "configuration": "",<br>
+ * "created_at": "2015-03-03T15:32:09.272Z",<br>
+ * "updated_at": "2015-03-03T15:32:09.272Z"<br>
+ * }<br>
  *
  * <p>
  * <b>Started:</b> 2015-08-19
  * </p>
- * 
+ *
  * @author Jochen
  *
  */

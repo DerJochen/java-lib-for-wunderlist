@@ -14,6 +14,13 @@ import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
 
 public class ListServiceImplTest {
 
+	public static final int id = 83526310;
+	private static final String createdAt = "2013-08-30T08:29:46.203Z";
+	private static final String title = "Read Later";
+	private static final String listType = "list";
+	private static final String type = "list";
+	private static final int revision = 10;
+
 	private static final Authorization AUTHORIZATION = new Authorization();
 
 	private ListServiceImpl listService;
@@ -52,36 +59,55 @@ public class ListServiceImplTest {
 
 	@Test
 	public void testRetrieveAll_oneList() {
-		String response = "[" + RetrieveListResponseTest.createListJSON(0) + "]";
+		String response = "[" + createListJSON(0) + "]";
 		HTTPClientJUnit.addResponse(response);
 
 		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
 
 		Assert.assertNotNull(allListsResponse);
 		Assert.assertEquals(1, allListsResponse.length);
-		RetrieveListResponseTest.checkListResponse(allListsResponse[0], 0);
+		checkListResponse(allListsResponse[0], 0);
 	}
 
 	@Test
 	public void testRetrieveAll_threeLists() {
-		String response = "[" + RetrieveListResponseTest.createListJSON(0) + "," + RetrieveListResponseTest.createListJSON(1) + ","
-				+ RetrieveListResponseTest.createListJSON(2) + "]";
+		String response = "[" + createListJSON(0) + "," + createListJSON(1) + "," + createListJSON(2) + "]";
 		HTTPClientJUnit.addResponse(response);
 
 		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
 		Assert.assertEquals(3, allListsResponse.length);
 		for (int i = 0; i < 3; i++) {
-			RetrieveListResponseTest.checkListResponse(allListsResponse[i], i);
+			checkListResponse(allListsResponse[i], i);
 		}
 	}
 
 	@Test
-	public void testRetrieveInt_none() {
-		HTTPClientJUnit.addResponse(RetrieveListResponseTest.createListJSON(0));
+	public void testRetrieveInt() {
+		HTTPClientJUnit.addResponse(createListJSON(0));
 
 		RetrieveListResponse retrieveListResponse = listService.retrieve(RetrieveListResponseTest.id, AUTHORIZATION);
 
-		RetrieveListResponseTest.checkListResponse(retrieveListResponse, 0);
+		checkListResponse(retrieveListResponse, 0);
+	}
+
+	private static String createListJSON(int number) {
+		return "{\"id\": " + (id + number) + ", " //
+				+ "\"created_at\": \"" + createdAt + "\",  " //
+				+ "\"title\": \"" + title + number + "\",  " //
+				+ "\"list_type\": \"" + listType + "\",  " //
+				+ "\"type\": \"" + type + "\",  " //
+				+ "\"revision\": " + (revision + number) //
+				+ "}";
+	}
+
+	private static void checkListResponse(RetrieveListResponse retrieveListResponse, int number) {
+		Assert.assertNotNull(retrieveListResponse);
+		Assert.assertEquals(id + number, retrieveListResponse.getId());
+		Assert.assertEquals(createdAt, retrieveListResponse.getCreated_at());
+		Assert.assertEquals(title + number, retrieveListResponse.getTitle());
+		Assert.assertEquals(listType, retrieveListResponse.getList_type());
+		Assert.assertEquals(type, retrieveListResponse.getType());
+		Assert.assertEquals(revision + number, retrieveListResponse.getRevision());
 	}
 
 }
