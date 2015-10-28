@@ -2,6 +2,7 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
+import de.jochor.lib.wunderlist.model.Task;
 import de.jochor.lib.wunderlist.model.Webhook;
 
 /**
@@ -27,8 +28,12 @@ public interface URIProvider {
 	public static final String PROP_POSITIONS_RETRIEVE_ONE = "url.wunderlist.positions.retrieve.one.tpl";
 	public static final String PROP_POSITIONS_UPDATE_ONE = "url.wunderlist.positions.update.one.tpl";
 
+	// Property names for the Task service
+	public static final String PROP_TASK_RETRIEVE_ALL = "url.wunderlist.task.retrieve.all";
+	public static final String PROP_TASK_RETRIEVE_ONE = "url.wunderlist.task.retrieve.one.tpl";
+
 	// Property names for the Webhook service
-	public static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.create.all.tpl";
+	public static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.retrieve.all";
 	public static final String PROP_WEBHOOK_CREATE_ONE = "url.wunderlist.webhook.create.one";
 	public static final String PROP_WEBHOOK_DELETE_ONE = "url.wunderlist.webhook.delete.one.tpl";
 
@@ -36,7 +41,9 @@ public interface URIProvider {
 
 	/**
 	 * Creates the URI to request authorization for access to the users lists. The user has to be redirected to this
-	 * URI.
+	 * URI.<br>
+	 * The parameters have to be included in the URI, since it is not used for a Java-based HTTP client request, but for
+	 * a HTTP redirect.
 	 *
 	 * @param clientID
 	 *            Wunderlist ID of the client software
@@ -93,16 +100,32 @@ public interface URIProvider {
 	 */
 	URI getPositionsUpdateURI(int listID);
 
+	/* Getters for Task service URIs */
+
+	/**
+	 * Creates the URI to request all {@link Task}s for a specific list.
+	 *
+	 * @return URI to request the {@link Task}s
+	 */
+	URI getTaskRetrieveAllURI();
+
+	/**
+	 * Creates the URI to retrieve a specific {@link Task}.
+	 *
+	 * @param taskID
+	 *            ID of the {@link Task} to retrieve
+	 * @return URI to request the {@link Task}
+	 */
+	URI getTaskRetrieveURI(int taskID);
+
 	/* Getters for Webhook service URIs */
 
 	/**
 	 * Creates the URI to request all {@link Webhook}s for a specific list.
 	 *
-	 * @param listID
-	 *            ID of the list to request the {@link Webhook}s for
 	 * @return URI to request the {@link Webhook}s
 	 */
-	URI getWebhookRetrieveAllURI(int listID);
+	URI getWebhookRetrieveAllURI();
 
 	/**
 	 * Getter for the URI to create a new {@link Webhook} at.

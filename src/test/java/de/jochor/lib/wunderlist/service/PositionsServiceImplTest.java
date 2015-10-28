@@ -2,19 +2,16 @@ package de.jochor.lib.wunderlist.service;
 
 import java.util.Arrays;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.junit.HTTPClientJUnit;
-import de.jochor.lib.servicefactory.ServiceFactory;
-import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
 import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
 
 /**
+ * Test for the {@link PositionsServiceImpl}.
  *
  * <p>
  * <b>Started:</b> 2015-08-24
@@ -23,9 +20,7 @@ import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
  * @author Jochen Hormes
  *
  */
-public class PositionServiceImplTest {
-
-	private static final Authorization AUTHORIZATION = new Authorization();
+public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 
 	private static final int id = 34234234;
 	private static final int revision = 124;
@@ -33,23 +28,6 @@ public class PositionServiceImplTest {
 	private static final String type = "task_position";
 
 	private PositionsServiceImpl positionService;
-
-	@BeforeClass
-	public static void setUpBeforeClass() {
-		// Switch off outputs from the service factory
-		System.setProperty(ServiceFactory.SILENT_MODE, "true");
-
-		AUTHORIZATION.setClientId("the applications id");
-		AUTHORIZATION.setUserToken("the users access token");
-
-		HTTPClientJUnit.addExpectedHeader("X-Client-ID", AUTHORIZATION.getClientId());
-		HTTPClientJUnit.addExpectedHeader("X-Access-Token", AUTHORIZATION.getUserToken());
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() {
-		HTTPClientJUnit.clearExpectedHeaders();
-	}
 
 	@Before
 	public void setUp() {

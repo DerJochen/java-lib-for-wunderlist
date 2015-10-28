@@ -41,8 +41,9 @@ public class WebhookServiceImpl implements WebhookService {
 	 */
 	@Override
 	public Webhook[] retrieveAll(int listID, Authorization authorization) {
-		URI uri = uriProvider.getWebhookRetrieveAllURI(listID);
+		URI uri = uriProvider.getWebhookRetrieveAllURI();
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
+		getRequest.setQueryParameter("list_id", listID);
 
 		String responseJSON = httpClient.get(getRequest);
 

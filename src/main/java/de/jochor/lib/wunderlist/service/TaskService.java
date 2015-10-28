@@ -42,14 +42,15 @@ public interface TaskService {
 	Task[] retrieveAllCompleted(int listID, Authorization authorization);
 
 	/**
+	 * Retrieves one specific {@link Task}.<br>
 	 * GET a.wunderlist.com/api/v1/tasks/:id
 	 *
-	 * @param id
+	 * @param taskID
 	 *            ID of the task to retrieve
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
 	 * @return Specified {@link Task}
 	 */
-	Task retrieve(int id, Authorization authorization);
+	Task retrieve(int taskID, Authorization authorization);
 
 }

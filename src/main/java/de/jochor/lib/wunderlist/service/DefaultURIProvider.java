@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Properties;
 
 /**
@@ -21,12 +22,14 @@ public class DefaultURIProvider implements URIProvider {
 
 	private static final String WUNDERLIST_URIS_PROPERTIES = "wunderlist-uris.properties";
 
-	private final Properties uris = new Properties();
+	private final Properties uriStrings = new Properties();
+
+	private final HashMap<String, URI> uris = new HashMap<>();
 
 	public DefaultURIProvider() {
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inStream = contextClassLoader.getResourceAsStream(WUNDERLIST_URIS_PROPERTIES)) {
-			uris.load(inStream);
+			uriStrings.load(inStream);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -39,7 +42,7 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getAuthorizationRequestURI(String clientID, String callback, String state) {
-		String uriTpl = uris.getProperty(PROP_AUTHORIZATION_REDIRECT);
+		String uriTpl = uriStrings.getProperty(PROP_AUTHORIZATION_REDIRECT);
 		try {
 			String utf8 = StandardCharsets.UTF_8.name();
 			String clientIDEnc = URLEncoder.encode(clientID, utf8);
@@ -60,8 +63,7 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getAuthorizationAccessTokenURI() {
-		String uriString = uris.getProperty(PROP_AUTHORIZATION_ACCESSTOKEN);
-		URI uri = URI.create(uriString);
+		URI uri = getStaticURI(PROP_AUTHORIZATION_ACCESSTOKEN);
 		return uri;
 	}
 
@@ -72,8 +74,7 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getListRetrieveAllURI() {
-		String uriString = uris.getProperty(PROP_LIST_RETRIEVE_ALL);
-		URI uri = URI.create(uriString);
+		URI uri = getStaticURI(PROP_LIST_RETRIEVE_ALL);
 		return uri;
 	}
 
@@ -82,8 +83,8 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getListRetrieveURI(int listID) {
-		String uriTpl = uris.getProperty(PROP_LIST_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, Integer.valueOf(listID));
+		String uriTpl = uriStrings.getProperty(PROP_LIST_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, listID);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -95,8 +96,8 @@ public class DefaultURIProvider implements URIProvider {
 
 	@Override
 	public URI getPositionsRetrieveURI(int id) {
-		String uriTpl = uris.getProperty(PROP_POSITIONS_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, Integer.valueOf(id));
+		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, id);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -106,8 +107,30 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getPositionsUpdateURI(int id) {
-		String uriTpl = uris.getProperty(PROP_POSITIONS_UPDATE_ONE);
-		String uriString = String.format(uriTpl, Integer.valueOf(id));
+		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_UPDATE_ONE);
+		String uriString = String.format(uriTpl, id);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/* Getters for Task service URIs */
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getTaskRetrieveAllURI() {
+		URI uri = getStaticURI(PROP_TASK_RETRIEVE_ALL);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getTaskRetrieveURI(int taskID) {
+		String uriTpl = uriStrings.getProperty(PROP_TASK_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, taskID);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -118,10 +141,8 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getWebhookRetrieveAllURI(int listID) {
-		String uriTpl = uris.getProperty(PROP_WEBHOOK_RETRIEVE_ALL);
-		String uriString = String.format(uriTpl, Integer.valueOf(listID));
-		URI uri = URI.create(uriString);
+	public URI getWebhookRetrieveAllURI() {
+		URI uri = getStaticURI(PROP_WEBHOOK_RETRIEVE_ALL);
 		return uri;
 	}
 
@@ -130,8 +151,7 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getWebhookCreateURI() {
-		String uriString = uris.getProperty(PROP_WEBHOOK_CREATE_ONE);
-		URI uri = URI.create(uriString);
+		URI uri = getStaticURI(PROP_WEBHOOK_CREATE_ONE);
 		return uri;
 	}
 
@@ -140,9 +160,23 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getWebhookDeleteURI(int webhookID) {
-		String uriTpl = uris.getProperty(PROP_WEBHOOK_DELETE_ONE);
-		String uriString = String.format(uriTpl, Integer.valueOf(webhookID));
+		String uriTpl = uriStrings.getProperty(PROP_WEBHOOK_DELETE_ONE);
+		String uriString = String.format(uriTpl, webhookID);
 		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	private URI getStaticURI(String uriName) {
+		if (uriName.endsWith(".tpl")) {
+			throw new UnsupportedOperationException("The name " + uriName + " points to a dynamic URI.");
+		}
+
+		URI uri = uris.get(uriName);
+		if (uri == null) {
+			String uriString = uriStrings.getProperty(uriName);
+			uri = URI.create(uriString);
+		}
+
 		return uri;
 	}
 
