@@ -19,6 +19,7 @@ import de.jochor.lib.wunderlist.model.Task;
  */
 public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 
+	private static final int id = 648931;
 	private static final int assignee_id = 5461;
 	private static final int assigner_id = 86484;
 	private static final String completed_at = "2013-10-29T08:29:46.203Z";
@@ -26,7 +27,6 @@ public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 	private static final String created_at = "2013-10-27T08:29:46.203Z";
 	private static final int created_by_id = 57584;
 	private static final String due_date = "2013-10-28T08:29:46.203Z";
-	private static final int id = 648931;
 	private static final int list_id = 384169;
 	private static final int revision = 2;
 	private static final String title = "Test Task ";
@@ -115,11 +115,7 @@ public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 	}
 
 	private void assertEquals(Task expected, Task actual) {
-		if (expected == null) {
-			Assert.assertNull(actual);
-			return;
-		}
-
+		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected.getAssignee_id(), actual.getAssignee_id());
 		Assert.assertEquals(expected.getAssigner_id(), actual.getAssigner_id());

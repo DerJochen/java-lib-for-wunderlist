@@ -6,19 +6,19 @@ import de.jochor.lib.wunderlist.AbstractRoundtripTest;
 
 /**
  * Round-trip test for a created {@link Webhook}.
- * 
+ *
  * <pre>
  * <code>json
  * {
  *   "id": 105743947,
- *   "created_by_id": 6234958,
  *   "processor_type": "generic",
  *   "url": "https://foo.bar.chadfowler.com/struts/asdf.do",
  *   "created_at": "2014-08-30T08:36:13.273Z",
+ *   "created_by_id": 6234958,
  *   "configuration": ""
  * }</code>
  * </pre>
- * 
+ *
  * <p>
  * <b>Started:</b> 2015-10-25
  * </p>
@@ -28,28 +28,24 @@ import de.jochor.lib.wunderlist.AbstractRoundtripTest;
  */
 public class WebhookCreatedRoundtripTest extends AbstractRoundtripTest<Webhook> {
 
-	private static final int id = 62;
-	private static final int list_id = 105743947;
-	private static final int membership_id = 49876097;
-	private static final String membership_type = "Membership";
-	private static final String url = "https:/yourhost.com/foo";
+	private static final int id = 105743947;
 	private static final String processor_type = "generic";
-	private static final String configuration = "";
+	private static final String url = "https:/yourhost.com/foo";
 	private static final String created_at = "2015-03-03T15:32:09.272Z";
-	private static final String updated_at = "2015-03-03T15:32:09.272Z";
+	private static final int created_by_id = 6234958;
+	private static final String configuration = "";
 
 	@Override
 	protected Webhook createEntity() {
 		Webhook entity = new Webhook();
+
 		entity.setId(id);
-		entity.setList_id(list_id);
-		entity.setMembership_id(membership_id);
-		entity.setMembership_type(membership_type);
-		entity.setUrl(url);
 		entity.setProcessor_type(processor_type);
-		entity.setConfiguration(configuration);
+		entity.setUrl(url);
 		entity.setCreated_at(created_at);
-		entity.setUpdated_at(updated_at);
+		entity.setCreated_by_id(created_by_id);
+		entity.setConfiguration(configuration);
+
 		return entity;
 	}
 
@@ -58,14 +54,11 @@ public class WebhookCreatedRoundtripTest extends AbstractRoundtripTest<Webhook> 
 		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected.getId(), actual.getId());
-		Assert.assertEquals(expected.getList_id(), actual.getList_id());
-		Assert.assertEquals(expected.getMembership_id(), actual.getMembership_id());
-		Assert.assertEquals(expected.getMembership_type(), actual.getMembership_type());
-		Assert.assertEquals(expected.getUrl(), actual.getUrl());
 		Assert.assertEquals(expected.getProcessor_type(), actual.getProcessor_type());
-		Assert.assertEquals(expected.getConfiguration(), actual.getConfiguration());
+		Assert.assertEquals(expected.getUrl(), actual.getUrl());
 		Assert.assertEquals(expected.getCreated_at(), actual.getCreated_at());
-		Assert.assertEquals(expected.getUpdated_at(), actual.getUpdated_at());
+		Assert.assertEquals(expected.getCreated_by_id(), actual.getCreated_by_id());
+		Assert.assertEquals(expected.getConfiguration(), actual.getConfiguration());
 	}
 
 }

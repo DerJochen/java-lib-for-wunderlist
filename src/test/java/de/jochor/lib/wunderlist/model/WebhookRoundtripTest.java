@@ -6,7 +6,7 @@ import de.jochor.lib.wunderlist.AbstractRoundtripTest;
 
 /**
  * Round-trip test for a retrieved {@link Webhook}.
- * 
+ *
  * <pre>
  * <code>json
  * {
@@ -21,11 +21,11 @@ import de.jochor.lib.wunderlist.AbstractRoundtripTest;
  *   "updated_at": "2015-03-03T15:32:09.272Z"
  * }</code>
  * </pre>
- * 
+ *
  * <p>
  * <i>In the current methods always an array of {@link Webhook}s is retrieved.</i>
  * </p>
- * 
+ *
  * <p>
  * <b>Started:</b> 2015-10-25
  * </p>
@@ -48,6 +48,7 @@ public class WebhookRoundtripTest extends AbstractRoundtripTest<Webhook> {
 	@Override
 	protected Webhook createEntity() {
 		Webhook entity = new Webhook();
+
 		entity.setId(id);
 		entity.setList_id(list_id);
 		entity.setMembership_id(membership_id);
@@ -57,6 +58,7 @@ public class WebhookRoundtripTest extends AbstractRoundtripTest<Webhook> {
 		entity.setConfiguration(configuration);
 		entity.setCreated_at(created_at);
 		entity.setUpdated_at(updated_at);
+
 		return entity;
 	}
 

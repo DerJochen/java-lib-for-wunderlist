@@ -12,7 +12,7 @@ The project is still work-in-progress and not ready to be used!
 
 ### PositionsService
 
-- ~~retrieve(int)~~: Retrieves the positions for one list, identified by ID (not yet implemented)
+- ~~retrieve(int)~~: Retrieves the positions for a list, identified by ID (not yet implemented)
 - ~~update(int, int[], int)~~: Updates the positions for one list, identified by ID and revision (not yet implemented)
 
 ### TaskService
@@ -23,9 +23,9 @@ The project is still work-in-progress and not ready to be used!
 
 ### WebhookService
 
-- ~~create(CreateWebhookRequest)~~: (not yet implemented)
-- ~~delete(int)~~: (not yet implemented)
-- ~~listWebhooks(int)~~: (not yet implemented)
+- retrieveAll(int): Retrieves all webhooks for a list, identified by ID
+- create(CreateWebhookRequest): Creates a new webhook
+- delete(int): Deletes a webhook permanently
 
 ## Maven
 

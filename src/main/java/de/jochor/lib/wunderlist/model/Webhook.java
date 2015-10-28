@@ -4,18 +4,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * json<br>
- * {<br>
- * "id": 62,<br>
- * "list_id": 105743947,<br>
- * "membership_id": 49876097,<br>
- * "membership_type": "Membership",<br>
- * "url": "https:/yourhost.com/foo",<br>
- * "processor_type": "generic",<br>
- * "configuration": "",<br>
- * "created_at": "2015-03-03T15:32:09.272Z",<br>
- * "updated_at": "2015-03-03T15:32:09.272Z"<br>
- * }<br>
+ * Java representation of a JSON object encapsulating a webhook.
+ *
+ * <pre>
+ * <code>json
+ * {
+ * "id": 62,
+ * "list_id": 105743947,
+ * "membership_id": 49876097,
+ * "membership_type": "Membership",
+ * "url": "https:/yourhost.com/foo",
+ * "processor_type": "generic",
+ * "configuration": "",
+ * "created_at": "2015-03-03T15:32:09.272Z",
+ * "created_by_id": 84646989,
+ * "updated_at": "2015-03-03T15:32:09.272Z"
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-08-19

@@ -18,7 +18,8 @@ public interface WebhookService {
 
 	/**
 	 * Retrieves all {@link Webhook}s registered for the specified list.<br>
-	 * GET a.wunderlist.com/api/v1/webhooks
+	 * GET a.wunderlist.com/api/v1/webhooks<br>
+	 * Params: list_id
 	 *
 	 * @param listID
 	 *            ID of the list to request the {@link Webhook}s for
