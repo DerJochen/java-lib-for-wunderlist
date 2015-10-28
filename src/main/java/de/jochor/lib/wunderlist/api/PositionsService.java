@@ -6,6 +6,7 @@ import de.jochor.lib.wunderlist.model.Positions;
 
 /**
  * Interface of the {@link PositionsService} of the Wunderlist REST API.
+ *
  * <p>
  * Unimplemented methods:
  * </p>

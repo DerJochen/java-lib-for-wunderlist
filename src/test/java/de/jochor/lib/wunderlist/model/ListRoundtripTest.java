@@ -5,6 +5,23 @@ import org.junit.Assert;
 import de.jochor.lib.wunderlist.AbstractRoundtripTest;
 
 /**
+ * Round-trip test for a {@link List}.
+ *
+ * <pre>
+ * <code>json
+ * {
+ * "id": 83526310,
+ * "title": "Read Later",
+ * "owner_type":"user",
+ * "owner_id":1235616,
+ * "list_type": "list",
+ * "public" : false,
+ * "revision": 10,
+ * "created_at": "2013-08-30T08:29:46.203Z",
+ * "created_by_request_id" : "498d3ffc44ddfa2f275b:0fc81b85-31e0-4d09-b3f4-6af222...",
+ * "type": "list"
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-08-25

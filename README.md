@@ -1,6 +1,8 @@
 # java-lib-for-wunderlist
 This project is a Java library for the REST API of Wunderlist.
 
+The project is still work-in-progress and not ready to be used!
+
 ## Features
 
 ### ListService
@@ -10,14 +12,20 @@ This project is a Java library for the REST API of Wunderlist.
 
 ### PositionsService
 
-- retrieve(int): Retrieves the positions for one list, identified by ID
-- update(int, int[], int): Updates the positions for one list, identified by ID and revision
+- ~~retrieve(int)~~: Retrieves the positions for one list, identified by ID (not yet implemented)
+- ~~update(int, int[], int)~~: Updates the positions for one list, identified by ID and revision (not yet implemented)
+
+### TaskService
+
+- ~~retrieveAll(int)~~: (not yet implemented)
+- ~~retrieveAllCompleted(int)~~: (not yet implemented)
+- ~~retrieve(int)~~: (not yet implemented)
 
 ### WebhookService
 
-- ~~create(CreateWebhookRequest)~~: not yet implemented
-- ~~delete(int)~~: not yet implemented
-- ~~listWebhooks(int)~~: not yet implemented
+- ~~create(CreateWebhookRequest)~~: (not yet implemented)
+- ~~delete(int)~~: (not yet implemented)
+- ~~listWebhooks(int)~~: (not yet implemented)
 
 ## Maven
 

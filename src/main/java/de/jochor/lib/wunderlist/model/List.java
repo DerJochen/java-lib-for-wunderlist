@@ -4,19 +4,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * json<br>
- * {<br>
- * "id": 83526310,<br>
- * "title": "Read Later",<br>
- * "owner_type":"user",<br>
- * "owner_id":1235616<br>
- * "list_type": "list",<br>
- * "public" : false,<br>
- * "revision": 10<br>
- * "created_at": "2013-08-30T08:29:46.203Z",<br>
- * "created_by_request_id" : "498d3ffc44ddfa2f275b:0fc81b85-31e0-4d09-b3f4-6af222..." ,<br>
- * "type": "list",<br>
- * }
+ * Java representation of a JSON object encapsulating a list.
+ *
+ * <pre>
+ * <code>json
+ * {
+ * "id": 83526310,
+ * "title": "Read Later",
+ * "owner_type":"user",
+ * "owner_id":1235616,
+ * "list_type": "list",
+ * "public" : false,
+ * "revision": 10,
+ * "created_at": "2013-08-30T08:29:46.203Z",
+ * "created_by_request_id" : "498d3ffc44ddfa2f275b:0fc81b85-31e0-4d09-b3f4-6af222...",
+ * "type": "list"
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-08-19
@@ -39,7 +43,8 @@ public class List {
 
 	private String list_type;
 
-	private boolean Public; // upper case since 'public' is a key word
+	// upper case since 'public' is a key word
+	private boolean Public;
 
 	private int revision;
 

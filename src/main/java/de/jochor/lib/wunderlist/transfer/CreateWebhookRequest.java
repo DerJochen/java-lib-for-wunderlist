@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import de.jochor.lib.wunderlist.model.Webhook;
 
 /**
- * Java representation of a JSON object encapsulating a "create webhook" request.
- * 
+ * Java representation of a JSON object encapsulating a "create {@link Webhook}" request.
+ *
  * <pre>
  * <code>json
  * {
@@ -21,7 +22,7 @@ import lombok.Setter;
  * <p>
  * <b>Started:</b> 2015-08-19
  * </p>
- * 
+ *
  * @author Jochen Hormes
  *
  */
