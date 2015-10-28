@@ -4,21 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * json<br>
- * {<br>
- * "id": 409233670,<br>
- * "assignee_id": 12345,<br>
- * "assigner_id": 5432,<br>
- * "created_at": "2013-08-30T08:36:13.273Z",<br>
- * "created_by_id": 6234958,<br>
- * "due_date": "2013-08-30",<br>
- * "list_id": 123,<br>
- * "revision": 1,<br>
- * "starred": true,<br>
- * "title": "Hello"<br>
- * "completed_at": "2013-08-30T08:36:13.273Z",<br>
- * "completed_by_id": 123<br>
- * }<br>
+ * Java representation of a JSON object encapsulating a task.
+ *
+ * <pre>
+ * <code>json
+ * {
+ * "id": 409233670,
+ * "assignee_id": 12345,
+ * "assigner_id": 5432,
+ * "created_at": "2013-08-30T08:36:13.273Z",
+ * "created_by_id": 6234958,
+ * "due_date": "2013-08-30",
+ * "list_id": 123,
+ * "revision": 1,
+ * "starred": true,
+ * "title": "Hello",
+ * "completed_at": "2013-08-30T08:36:13.273Z",
+ * "completed_by_id": 123
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-09-23

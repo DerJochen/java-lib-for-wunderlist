@@ -7,6 +7,15 @@ import de.jochor.lib.wunderlist.model.Task;
  * Interface of the {@link TaskService} of the Wunderlist REST API.
  *
  * <p>
+ * Unimplemented methods:
+ * </p>
+ * <ul>
+ * <li>create() - Creates a new {@link Task}</li>
+ * <li>update() - Updates a {@link Task}</li>
+ * <li>delete() - Deletes a {@link Task} permanently</li>
+ * </ul>
+ *
+ * <p>
  * <b>Started:</b> 2015-09-23
  * </p>
  *

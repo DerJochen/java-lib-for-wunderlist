@@ -5,6 +5,25 @@ import org.junit.Assert;
 import de.jochor.lib.wunderlist.AbstractRoundtripTest;
 
 /**
+ * Round-trip test for a {@link Task}.
+ *
+ * <pre>
+ * <code>json
+ * {
+ * "id": 409233670,
+ * "assignee_id": 12345,
+ * "assigner_id": 5432,
+ * "created_at": "2013-08-30T08:36:13.273Z",
+ * "created_by_id": 6234958,
+ * "due_date": "2013-08-30",
+ * "list_id": 123,
+ * "revision": 1,
+ * "starred": true,
+ * "title": "Hello",
+ * "completed_at": "2013-08-30T08:36:13.273Z",
+ * "completed_by_id": 123
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-10-27
@@ -31,6 +50,7 @@ public class TaskRoundtripTest extends AbstractRoundtripTest<Task> {
 	@Override
 	protected Task createEntity() {
 		Task entity = new Task();
+
 		entity.setId(id);
 		entity.setAssignee_id(assignee_id);
 		entity.setAssigner_id(assigner_id);
@@ -43,6 +63,7 @@ public class TaskRoundtripTest extends AbstractRoundtripTest<Task> {
 		entity.setTitle(title);
 		entity.setCompleted_at(completed_at);
 		entity.setCompleted_by_id(completed_by_id);
+
 		return entity;
 	}
 

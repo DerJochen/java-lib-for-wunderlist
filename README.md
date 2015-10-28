@@ -17,9 +17,9 @@ The project is still work-in-progress and not ready to be used!
 
 ### TaskService
 
-- ~~retrieveAll(int)~~: (not yet implemented)
-- ~~retrieveAllCompleted(int)~~: (not yet implemented)
-- ~~retrieve(int)~~: (not yet implemented)
+- retrieveAll(int): Retrieves all open tasks for a list
+- retrieveAllCompleted(int): Retrieves all completed tasks for a list
+- retrieve(int): Retrieves a specific task
 
 ### WebhookService
 
