@@ -1,4 +1,4 @@
-package de.jochor.lib.wunderlist.service;
+package de.jochor.lib.wunderlist.api;
 
 import java.net.URI;
 

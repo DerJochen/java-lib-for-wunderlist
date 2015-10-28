@@ -2,6 +2,8 @@ package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+
 /**
  *
  * <p>
@@ -11,7 +13,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class TaskTest extends AbstractRoundtripTest<Task> {
+public class TaskRoundtripTest extends AbstractRoundtripTest<Task> {
 
 	private static final int id = 62;
 	private static final int assignee_id = 85893;

@@ -1,7 +1,7 @@
-package de.jochor.lib.wunderlist.service;
+package de.jochor.lib.wunderlist.api;
 
 import de.jochor.lib.wunderlist.model.Authorization;
-import de.jochor.lib.wunderlist.model.RetrieveListResponse;
+import de.jochor.lib.wunderlist.model.List;
 
 /**
  * Interface of the {@link ListService} of the Wunderlist REST API.
@@ -20,9 +20,9 @@ public interface ListService {
 	 *
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
-	 * @return Array of {@link RetrieveListResponse}s for all lists
+	 * @return Array with all {@link List}s
 	 */
-	RetrieveListResponse[] retrieveAll(Authorization authorization);
+	List[] retrieveAll(Authorization authorization);
 
 	/**
 	 * GET a.wunderlist.com/api/v1/lists/:id
@@ -31,8 +31,8 @@ public interface ListService {
 	 *            ID of the List
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
-	 * @return {@link RetrieveListResponse} for the requested list
+	 * @return The requested {@link List}
 	 */
-	RetrieveListResponse retrieve(int listID, Authorization authorization);
+	List retrieve(int listID, Authorization authorization);
 
 }

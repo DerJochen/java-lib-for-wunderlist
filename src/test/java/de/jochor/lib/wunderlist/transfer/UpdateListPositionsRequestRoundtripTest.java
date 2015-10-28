@@ -1,8 +1,20 @@
-package de.jochor.lib.wunderlist.model;
+package de.jochor.lib.wunderlist.transfer;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+import de.jochor.lib.wunderlist.transfer.UpdateListPositionsRequest;
+
 /**
+ * Round-trip test for a {@link UpdateListPositionsRequest}.
+ * 
+ * <pre>
+ * <code>json
+ * {
+ * "values": [4567, 4568, 9876, 234],
+ * "revision": 123
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-10-25
@@ -11,7 +23,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class UpdateListPositionsRequestTest extends AbstractRoundtripTest<UpdateListPositionsRequest> {
+public class UpdateListPositionsRequestRoundtripTest extends AbstractRoundtripTest<UpdateListPositionsRequest> {
 
 	private static final int[] values = { 9, 68, 34, 3 };
 	private static final int revision = 54;

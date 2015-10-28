@@ -2,7 +2,10 @@ package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+
 /**
+ * Rount-trip test for updated {@link Positions}.
  *
  * <p>
  * <b>Started:</b> 2015-10-25
@@ -11,7 +14,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class UpdateListPositionsResponseTest extends AbstractRoundtripTest<UpdateListPositionsResponse> {
+public class PositionsUpdatedRoundtripTest extends AbstractRoundtripTest<Positions> {
 
 	private static final int id = 342334;
 	private static final int revision = 14;
@@ -20,8 +23,8 @@ public class UpdateListPositionsResponseTest extends AbstractRoundtripTest<Updat
 	private static final int listID = 87941;
 
 	@Override
-	protected UpdateListPositionsResponse createEntity() {
-		UpdateListPositionsResponse entity = new UpdateListPositionsResponse();
+	protected Positions createEntity() {
+		Positions entity = new Positions();
 		entity.setId(id);
 		entity.setRevision(revision);
 		entity.setType(type);
@@ -31,7 +34,7 @@ public class UpdateListPositionsResponseTest extends AbstractRoundtripTest<Updat
 	}
 
 	@Override
-	protected void assertEquals(UpdateListPositionsResponse expected, UpdateListPositionsResponse actual) {
+	protected void assertEquals(Positions expected, Positions actual) {
 		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected.getId(), actual.getId());

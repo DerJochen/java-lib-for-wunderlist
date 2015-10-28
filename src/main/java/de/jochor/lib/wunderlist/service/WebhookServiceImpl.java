@@ -10,10 +10,11 @@ import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
+import de.jochor.lib.wunderlist.api.RequestFactory;
+import de.jochor.lib.wunderlist.api.WebhookService;
 import de.jochor.lib.wunderlist.model.Authorization;
-import de.jochor.lib.wunderlist.model.CreateWebhookRequest;
-import de.jochor.lib.wunderlist.model.CreateWebhookResponse;
 import de.jochor.lib.wunderlist.model.Webhook;
+import de.jochor.lib.wunderlist.transfer.CreateWebhookRequest;
 
 /**
  * Implementation of the {@link WebhookService} of the Wunderlist REST API.
@@ -56,7 +57,7 @@ public class WebhookServiceImpl implements WebhookService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization) {
+	public Webhook create(CreateWebhookRequest request, Authorization authorization) {
 		String body = jsonEntityService.toJSON(request);
 
 		URI uri = uriProvider.getWebhookCreateURI();
@@ -64,7 +65,7 @@ public class WebhookServiceImpl implements WebhookService {
 
 		String responseJSON = httpClient.post(postRequest);
 
-		CreateWebhookResponse response = jsonEntityService.toEntity(responseJSON, CreateWebhookResponse.class);
+		Webhook response = jsonEntityService.toEntity(responseJSON, Webhook.class);
 
 		return response;
 	}

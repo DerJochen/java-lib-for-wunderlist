@@ -44,6 +44,8 @@ public class Webhook {
 
 	private String created_at;
 
+	private int created_by_id;
+
 	private String updated_at;
 
 }

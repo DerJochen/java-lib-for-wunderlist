@@ -7,8 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.junit.HTTPClientJUnit;
-import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
-import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
+import de.jochor.lib.wunderlist.model.Positions;
 
 /**
  * Test for the {@link PositionsServiceImpl}.
@@ -40,9 +39,9 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		String json = createRequestJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1, AUTHORIZATION);
+		Positions positions = positionService.retrieve(1, AUTHORIZATION);
 
-		checkResponse(values, retrieveListPositionsResponse);
+		checkResponse(values, positions);
 	}
 
 	@Test
@@ -51,9 +50,9 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		String json = createRequestJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		RetrieveListPositionsResponse retrieveListPositionsResponse = positionService.retrieve(1, AUTHORIZATION);
+		Positions positions = positionService.retrieve(1, AUTHORIZATION);
 
-		checkResponse(values, retrieveListPositionsResponse);
+		checkResponse(values, positions);
 	}
 
 	@Test
@@ -62,9 +61,9 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		String json = createUpdateJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		UpdateListPositionsResponse updateListPositionsResponse = positionService.update(id, values, revision, AUTHORIZATION);
+		Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
 
-		checkResponse(values, updateListPositionsResponse);
+		checkResponse(values, positions);
 	}
 
 	@Test
@@ -73,9 +72,9 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		String json = createUpdateJSON(values);
 		HTTPClientJUnit.addResponse(json);
 
-		UpdateListPositionsResponse updateListPositionsResponse = positionService.update(id, values, revision, AUTHORIZATION);
+		Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
 
-		checkResponse(values, updateListPositionsResponse);
+		checkResponse(values, positions);
 	}
 
 	protected String createRequestJSON(int[] values) {
@@ -97,19 +96,17 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		return json;
 	}
 
-	protected void checkResponse(int[] values, RetrieveListPositionsResponse listPositionsResponse) {
-		Assert.assertNotNull(listPositionsResponse);
-		Assert.assertEquals(id, listPositionsResponse.getId());
-		Assert.assertEquals(revision + 1, listPositionsResponse.getRevision());
-		Assert.assertEquals(type, listPositionsResponse.getType());
-
-		if (listPositionsResponse instanceof UpdateListPositionsResponse) {
-			Assert.assertEquals(listId, ((UpdateListPositionsResponse) listPositionsResponse).getList_id());
-		}
-
-		int[] actualValues = listPositionsResponse.getValues();
+	protected void checkResponse(int[] values, Positions positions) {
+		Assert.assertNotNull(positions);
+		Assert.assertEquals(id, positions.getId());
+		Assert.assertEquals(revision + 1, positions.getRevision());
+		Assert.assertEquals(type, positions.getType());
+		int[] actualValues = positions.getValues();
 		Assert.assertNotNull(actualValues);
 		Assert.assertArrayEquals(values, actualValues);
+		if (positions.getList_id() != 0) {
+			Assert.assertEquals(listId, positions.getList_id());
+		}
 	}
 
 }

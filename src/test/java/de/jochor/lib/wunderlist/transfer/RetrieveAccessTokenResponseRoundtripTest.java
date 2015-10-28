@@ -1,8 +1,19 @@
-package de.jochor.lib.wunderlist.model;
+package de.jochor.lib.wunderlist.transfer;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+import de.jochor.lib.wunderlist.transfer.RetrieveAccessTokenResponse;
+
 /**
+ * Round-trip test for a {@link RetrieveAccessTokenResponse}.
+ * 
+ * <pre>
+ * <code>json
+ * {
+ * "access_token": "976d16a81ccf621a654fcc23193b09498b220e89eb72ced3"
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-10-25
@@ -11,7 +22,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class RetrieveAccessTokenResponseTest extends AbstractRoundtripTest<RetrieveAccessTokenResponse> {
+public class RetrieveAccessTokenResponseRoundtripTest extends AbstractRoundtripTest<RetrieveAccessTokenResponse> {
 
 	private static final String accessToken = "The_accessToken";
 

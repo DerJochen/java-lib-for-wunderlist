@@ -22,12 +22,12 @@ import lombok.Setter;
  * <b>Started:</b> 2015-08-19
  * </p>
  *
- * @author Jochen
+ * @author Jochen Hormes
  *
  */
 @Getter
 @Setter
-public class RetrieveListResponse {
+public class List {
 
 	private int id;
 

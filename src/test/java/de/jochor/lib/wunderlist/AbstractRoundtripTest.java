@@ -1,4 +1,4 @@
-package de.jochor.lib.wunderlist.model;
+package de.jochor.lib.wunderlist;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

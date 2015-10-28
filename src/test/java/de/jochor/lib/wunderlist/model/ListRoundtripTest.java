@@ -2,6 +2,8 @@ package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+
 /**
  *
  * <p>
@@ -11,7 +13,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class RetrieveListResponseTest extends AbstractRoundtripTest<RetrieveListResponse> {
+public class ListRoundtripTest extends AbstractRoundtripTest<List> {
 
 	public static final int id = 83526310;
 	private static final String title = "Read Later";
@@ -25,8 +27,8 @@ public class RetrieveListResponseTest extends AbstractRoundtripTest<RetrieveList
 	private static final String type = "list";
 
 	@Override
-	protected RetrieveListResponse createEntity() {
-		RetrieveListResponse entity = new RetrieveListResponse();
+	protected List createEntity() {
+		List entity = new List();
 
 		entity.setId(id);
 		entity.setTitle(title);
@@ -43,7 +45,7 @@ public class RetrieveListResponseTest extends AbstractRoundtripTest<RetrieveList
 	}
 
 	@Override
-	protected void assertEquals(RetrieveListResponse expected, RetrieveListResponse actual) {
+	protected void assertEquals(List expected, List actual) {
 		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertEquals(expected.getId(), actual.getId());

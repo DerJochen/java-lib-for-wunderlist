@@ -2,8 +2,30 @@ package de.jochor.lib.wunderlist.model;
 
 import org.junit.Assert;
 
+import de.jochor.lib.wunderlist.AbstractRoundtripTest;
+
 /**
- *
+ * Round-trip test for a retrieved {@link Webhook}.
+ * 
+ * <pre>
+ * <code>json
+ * {
+ *   "id": 62,
+ *   "list_id": 105743947,
+ *   "membership_id": 49876097,
+ *   "membership_type": "Membership",
+ *   "url": "https:/yourhost.com/foo",
+ *   "processor_type": "generic",
+ *   "configuration": "",
+ *   "created_at": "2015-03-03T15:32:09.272Z",
+ *   "updated_at": "2015-03-03T15:32:09.272Z"
+ * }</code>
+ * </pre>
+ * 
+ * <p>
+ * <i>In the current methods always an array of {@link Webhook}s is retrieved.</i>
+ * </p>
+ * 
  * <p>
  * <b>Started:</b> 2015-10-25
  * </p>
@@ -11,7 +33,7 @@ import org.junit.Assert;
  * @author Jochen Hormes
  *
  */
-public class WebhookTest extends AbstractRoundtripTest<Webhook> {
+public class WebhookRoundtripTest extends AbstractRoundtripTest<Webhook> {
 
 	private static final int id = 62;
 	private static final int list_id = 105743947;

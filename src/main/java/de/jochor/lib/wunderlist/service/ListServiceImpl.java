@@ -8,8 +8,10 @@ import de.jochor.lib.http4j.HTTPClientFactory;
 import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
+import de.jochor.lib.wunderlist.api.ListService;
+import de.jochor.lib.wunderlist.api.RequestFactory;
 import de.jochor.lib.wunderlist.model.Authorization;
-import de.jochor.lib.wunderlist.model.RetrieveListResponse;
+import de.jochor.lib.wunderlist.model.List;
 
 /**
  * Implementation of the {@link ListService} of the Wunderlist REST API.
@@ -36,12 +38,12 @@ public class ListServiceImpl implements ListService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RetrieveListResponse[] retrieveAll(Authorization authorization) {
+	public List[] retrieveAll(Authorization authorization) {
 		URI uri = uriProvider.getListRetrieveAllURI();
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = httpClient.get(getRequest);
-		RetrieveListResponse[] response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse[].class);
+		List[] response = jsonEntityService.toEntity(responseJSON, List[].class);
 
 		return response;
 	}
@@ -50,12 +52,12 @@ public class ListServiceImpl implements ListService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RetrieveListResponse retrieve(int listID, Authorization authorization) {
+	public List retrieve(int listID, Authorization authorization) {
 		URI uri = uriProvider.getListRetrieveURI(listID);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = httpClient.get(getRequest);
-		RetrieveListResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListResponse.class);
+		List response = jsonEntityService.toEntity(responseJSON, List.class);
 
 		return response;
 	}

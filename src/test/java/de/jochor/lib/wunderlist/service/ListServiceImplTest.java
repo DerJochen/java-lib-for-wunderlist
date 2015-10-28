@@ -5,8 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.junit.HTTPClientJUnit;
-import de.jochor.lib.wunderlist.model.RetrieveListResponse;
-import de.jochor.lib.wunderlist.model.RetrieveListResponseTest;
+import de.jochor.lib.wunderlist.model.List;
+import de.jochor.lib.wunderlist.model.ListRoundtripTest;
 
 /**
  * Test for the {@link ListServiceImpl}.
@@ -38,10 +38,10 @@ public class ListServiceImplTest extends AbstractRESTClientServiceTest {
 	public void testRetrieveAll_noLists() {
 		HTTPClientJUnit.addResponse("[]");
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
+		List[] allLists = listService.retrieveAll(AUTHORIZATION);
 
-		Assert.assertNotNull(allListsResponse);
-		Assert.assertEquals(0, allListsResponse.length);
+		Assert.assertNotNull(allLists);
+		Assert.assertEquals(0, allLists.length);
 	}
 
 	@Test
@@ -49,11 +49,11 @@ public class ListServiceImplTest extends AbstractRESTClientServiceTest {
 		String response = "[" + createListJSON(0) + "]";
 		HTTPClientJUnit.addResponse(response);
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
+		List[] allLists = listService.retrieveAll(AUTHORIZATION);
 
-		Assert.assertNotNull(allListsResponse);
-		Assert.assertEquals(1, allListsResponse.length);
-		checkListResponse(allListsResponse[0], 0);
+		Assert.assertNotNull(allLists);
+		Assert.assertEquals(1, allLists.length);
+		checkList(allLists[0], 0);
 	}
 
 	@Test
@@ -61,10 +61,10 @@ public class ListServiceImplTest extends AbstractRESTClientServiceTest {
 		String response = "[" + createListJSON(0) + "," + createListJSON(1) + "," + createListJSON(2) + "]";
 		HTTPClientJUnit.addResponse(response);
 
-		RetrieveListResponse[] allListsResponse = listService.retrieveAll(AUTHORIZATION);
-		Assert.assertEquals(3, allListsResponse.length);
+		List[] allLists = listService.retrieveAll(AUTHORIZATION);
+		Assert.assertEquals(3, allLists.length);
 		for (int i = 0; i < 3; i++) {
-			checkListResponse(allListsResponse[i], i);
+			checkList(allLists[i], i);
 		}
 	}
 
@@ -72,9 +72,9 @@ public class ListServiceImplTest extends AbstractRESTClientServiceTest {
 	public void testRetrieveInt() {
 		HTTPClientJUnit.addResponse(createListJSON(0));
 
-		RetrieveListResponse retrieveListResponse = listService.retrieve(RetrieveListResponseTest.id, AUTHORIZATION);
+		List list = listService.retrieve(ListRoundtripTest.id, AUTHORIZATION);
 
-		checkListResponse(retrieveListResponse, 0);
+		checkList(list, 0);
 	}
 
 	private static String createListJSON(int number) {
@@ -87,14 +87,14 @@ public class ListServiceImplTest extends AbstractRESTClientServiceTest {
 				+ "}";
 	}
 
-	private static void checkListResponse(RetrieveListResponse retrieveListResponse, int number) {
-		Assert.assertNotNull(retrieveListResponse);
-		Assert.assertEquals(id + number, retrieveListResponse.getId());
-		Assert.assertEquals(createdAt, retrieveListResponse.getCreated_at());
-		Assert.assertEquals(title + number, retrieveListResponse.getTitle());
-		Assert.assertEquals(listType, retrieveListResponse.getList_type());
-		Assert.assertEquals(type, retrieveListResponse.getType());
-		Assert.assertEquals(revision + number, retrieveListResponse.getRevision());
+	private static void checkList(List list, int number) {
+		Assert.assertNotNull(list);
+		Assert.assertEquals(id + number, list.getId());
+		Assert.assertEquals(createdAt, list.getCreated_at());
+		Assert.assertEquals(title + number, list.getTitle());
+		Assert.assertEquals(listType, list.getList_type());
+		Assert.assertEquals(type, list.getType());
+		Assert.assertEquals(revision + number, list.getRevision());
 	}
 
 }

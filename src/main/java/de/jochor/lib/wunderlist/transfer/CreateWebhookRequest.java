@@ -1,4 +1,4 @@
-package de.jochor.lib.wunderlist.model;
+package de.jochor.lib.wunderlist.transfer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
- * json<br>
+ * Java representation of a JSON object encapsulating a "create webhook" request.
+ * 
+ * <pre>
+ * <code>json
+ * {
+ *   "list_id": 105743947,
+ *   "url":"https://foo.bar.chadfowler.com/struts/asdf.do",
+ *   "processor_type":"generic",
+ *   "configuration":""}
+ * }</code>
+ * </pre>
  *
  * <p>
  * <b>Started:</b> 2015-08-19

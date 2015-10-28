@@ -9,10 +9,11 @@ import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
+import de.jochor.lib.wunderlist.api.PositionsService;
+import de.jochor.lib.wunderlist.api.RequestFactory;
 import de.jochor.lib.wunderlist.model.Authorization;
-import de.jochor.lib.wunderlist.model.RetrieveListPositionsResponse;
-import de.jochor.lib.wunderlist.model.UpdateListPositionsRequest;
-import de.jochor.lib.wunderlist.model.UpdateListPositionsResponse;
+import de.jochor.lib.wunderlist.model.Positions;
+import de.jochor.lib.wunderlist.transfer.UpdateListPositionsRequest;
 
 /**
  * Implementation of the {@link PositionsService} of the Wunderlist REST API.
@@ -39,12 +40,12 @@ public class PositionsServiceImpl implements PositionsService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public RetrieveListPositionsResponse retrieve(int id, Authorization authorization) {
+	public Positions retrieve(int id, Authorization authorization) {
 		URI uri = uriProvider.getPositionsRetrieveURI(id);
 		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
 
 		String responseJSON = httpClient.get(getRequest);
-		RetrieveListPositionsResponse response = jsonEntityService.toEntity(responseJSON, RetrieveListPositionsResponse.class);
+		Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
 
 		return response;
 	}
@@ -53,7 +54,7 @@ public class PositionsServiceImpl implements PositionsService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public UpdateListPositionsResponse update(int id, int[] values, int revision, Authorization authorization) {
+	public Positions update(int id, int[] values, int revision, Authorization authorization) {
 		URI uri = uriProvider.getPositionsUpdateURI(id);
 		UpdateListPositionsRequest request = new UpdateListPositionsRequest(values, revision);
 		String requestJSON = jsonEntityService.toJSON(request);
@@ -61,7 +62,7 @@ public class PositionsServiceImpl implements PositionsService {
 		PutRequest putRequest = requestFactory.createPutRequest(uri, authorization, requestJSON);
 
 		String responseJSON = httpClient.put(putRequest);
-		UpdateListPositionsResponse response = jsonEntityService.toEntity(responseJSON, UpdateListPositionsResponse.class);
+		Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
 
 		return response;
 	}

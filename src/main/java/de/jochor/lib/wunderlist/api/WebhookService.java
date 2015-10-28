@@ -1,9 +1,8 @@
-package de.jochor.lib.wunderlist.service;
+package de.jochor.lib.wunderlist.api;
 
 import de.jochor.lib.wunderlist.model.Authorization;
-import de.jochor.lib.wunderlist.model.CreateWebhookRequest;
-import de.jochor.lib.wunderlist.model.CreateWebhookResponse;
 import de.jochor.lib.wunderlist.model.Webhook;
+import de.jochor.lib.wunderlist.transfer.CreateWebhookRequest;
 
 /**
  * Interface of the {@link WebhookService} of the Wunderlist REST API.
@@ -37,9 +36,9 @@ public interface WebhookService {
 	 *            {@link CreateWebhookRequest} object
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
-	 * @return {@link CreateWebhookResponse} object
+	 * @return {@link Webhook} object
 	 */
-	CreateWebhookResponse create(CreateWebhookRequest request, Authorization authorization);
+	Webhook create(CreateWebhookRequest request, Authorization authorization);
 
 	/**
 	 * Deletes the {@link Webhook} specified by the ID given.<br>

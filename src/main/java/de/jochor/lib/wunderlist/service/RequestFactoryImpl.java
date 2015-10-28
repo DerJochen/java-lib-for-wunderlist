@@ -7,6 +7,7 @@ import de.jochor.lib.http4j.model.DeleteRequest;
 import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.http4j.model.PutRequest;
+import de.jochor.lib.wunderlist.api.RequestFactory;
 import de.jochor.lib.wunderlist.model.Authorization;
 
 public class RequestFactoryImpl implements RequestFactory {
