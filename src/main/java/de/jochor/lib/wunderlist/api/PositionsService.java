@@ -24,31 +24,67 @@ import de.jochor.lib.wunderlist.model.Positions;
  */
 public interface PositionsService {
 
-	/**
-	 * Retrieves the {@link Positions} for a specified {@link List}.<br>
-	 * GET a.wunderlist.com/api/v1/list_positions/:id
-	 *
-	 * @param id
-	 *            ID of the List ? (or of the Positions, needs checking)
-	 * @param authorization
-	 *            {@link Authorization} containing client ID and access token
-	 * @return Requested {@link Positions} object
-	 */
-	Positions retrieve(int id, Authorization authorization);
+	// /**
+	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
+	// * GET a.wunderlist.com/api/v1/list_positions/:id
+	// *
+	// * @param id
+	// * ID of the List ? (or of the Positions, needs checking)
+	// * @param authorization
+	// * {@link Authorization} containing client ID and access token
+	// * @return Requested {@link Positions} object
+	// */
+	Positions retrieveListPositions(Authorization authorization);
 
-	/**
-	 * PUT or PATCH a.wunderlist.com/api/v1/list_positions/:id
-	 *
-	 * @param id
-	 *            ID of the List
-	 * @param values
-	 *            Array of reordered item IDs
-	 * @param revision
-	 *            Revision of the original {@link Positions}
-	 * @param authorization
-	 *            {@link Authorization} containing client ID and access token
-	 * @return Updated {@link Positions} object
-	 */
-	Positions update(int id, int[] values, int revision, Authorization authorization);
+	// /**
+	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
+	// * GET a.wunderlist.com/api/v1/list_positions/:id
+	// *
+	// * @param id
+	// * ID of the List ? (or of the Positions, needs checking)
+	// * @param authorization
+	// * {@link Authorization} containing client ID and access token
+	// * @return Requested {@link Positions} object
+	// */
+	Positions retrieveListPositions(int id, Authorization authorization);
+
+	// /**
+	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
+	// * GET a.wunderlist.com/api/v1/list_positions/:id
+	// *
+	// * @param id
+	// * ID of the List ? (or of the Positions, needs checking)
+	// * @param authorization
+	// * {@link Authorization} containing client ID and access token
+	// * @return Requested {@link Positions} object
+	// */
+	// Positions retrieveTaskPositions(int listID, Authorization authorization);
+
+	// /**
+	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
+	// * GET a.wunderlist.com/api/v1/list_positions/:id
+	// *
+	// * @param id
+	// * ID of the List ? (or of the Positions, needs checking)
+	// * @param authorization
+	// * {@link Authorization} containing client ID and access token
+	// * @return Requested {@link Positions} object
+	// */
+	// Positions retrieveTaskPositions(int positionsID, Authorization authorization);
+
+	// /**
+	// * PUT or PATCH a.wunderlist.com/api/v1/list_positions/:id
+	// *
+	// * @param id
+	// * ID of the List
+	// * @param values
+	// * Array of reordered item IDs
+	// * @param revision
+	// * Revision of the original {@link Positions}
+	// * @param authorization
+	// * {@link Authorization} containing client ID and access token
+	// * @return Updated {@link Positions} object
+	// */
+	Positions updateTaskPositions(int id, int[] values, int revision, Authorization authorization);
 
 }

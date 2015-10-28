@@ -9,7 +9,6 @@ import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
 import de.jochor.lib.wunderlist.api.AuthorizationService;
-import de.jochor.lib.wunderlist.api.RequestFactory;
 import de.jochor.lib.wunderlist.transfer.RetrieveAccessTokenRequest;
 import de.jochor.lib.wunderlist.transfer.RetrieveAccessTokenResponse;
 

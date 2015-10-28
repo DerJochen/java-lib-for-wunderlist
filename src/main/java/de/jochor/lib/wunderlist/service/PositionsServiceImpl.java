@@ -1,19 +1,13 @@
 package de.jochor.lib.wunderlist.service;
 
-import java.net.URI;
-
 import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
-import de.jochor.lib.http4j.model.GetRequest;
-import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
 import de.jochor.lib.wunderlist.api.PositionsService;
-import de.jochor.lib.wunderlist.api.RequestFactory;
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.Positions;
-import de.jochor.lib.wunderlist.transfer.UpdateListPositionsRequest;
 
 /**
  * Implementation of the {@link PositionsService} of the Wunderlist REST API.
@@ -36,35 +30,59 @@ public class PositionsServiceImpl implements PositionsService {
 	@Setter
 	private URIProvider uriProvider = new DefaultURIProvider();
 
-	/**
-	 * {@inheritDoc}
-	 */
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// public Positions retrieve(int id, Authorization authorization) {
+	// URI uri = uriProvider.getPositionsRetrieveURI(id);
+	// GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
+	//
+	// String responseJSON = httpClient.get(getRequest);
+	// Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
+	//
+	// return response;
+	// }
+	//
+	// /**
+	// * {@inheritDoc}
+	// */
+	// @Override
+	// public Positions update(int id, int[] values, int revision, Authorization authorization) {
+	// URI uri = uriProvider.getPositionsUpdateURI(id);
+	// UpdateListPositionsRequest request = new UpdateListPositionsRequest(values, revision);
+	// String requestJSON = jsonEntityService.toJSON(request);
+	//
+	// PutRequest putRequest = requestFactory.createPutRequest(uri, authorization, requestJSON);
+	//
+	// String responseJSON = httpClient.put(putRequest);
+	// Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
+	//
+	// return response;
+	// }
+
 	@Override
-	public Positions retrieve(int id, Authorization authorization) {
-		URI uri = uriProvider.getPositionsRetrieveURI(id);
-		GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
-
-		String responseJSON = httpClient.get(getRequest);
-		Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
-
-		return response;
+	public Positions retrieveListPositions(Authorization authorization) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public Positions update(int id, int[] values, int revision, Authorization authorization) {
-		URI uri = uriProvider.getPositionsUpdateURI(id);
-		UpdateListPositionsRequest request = new UpdateListPositionsRequest(values, revision);
-		String requestJSON = jsonEntityService.toJSON(request);
+	public Positions retrieveListPositions(int id, Authorization authorization) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-		PutRequest putRequest = requestFactory.createPutRequest(uri, authorization, requestJSON);
+	@Override
+	public Positions retrieveTaskPositions(int listID, Authorization authorization) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-		String responseJSON = httpClient.put(putRequest);
-		Positions response = jsonEntityService.toEntity(responseJSON, Positions.class);
-
-		return response;
+	@Override
+	public Positions updateTaskPositions(int id, int[] values, int revision, Authorization authorization) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

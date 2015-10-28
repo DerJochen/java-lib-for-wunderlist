@@ -4,9 +4,7 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
-import de.jochor.lib.http4j.junit.HTTPClientJUnit;
 import de.jochor.lib.wunderlist.model.Positions;
 
 /**
@@ -33,49 +31,49 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		positionService = new PositionsServiceImpl();
 	}
 
-	@Test
-	public void testRetrieveListPositionsInt_emptyList() {
-		int[] values = {};
-		String json = createRequestJSON(values);
-		HTTPClientJUnit.addResponse(json);
-
-		Positions positions = positionService.retrieve(1, AUTHORIZATION);
-
-		checkResponse(values, positions);
-	}
-
-	@Test
-	public void testRetrieveListPositionsInt_normalList() {
-		int[] values = { 123, 234, 345, 456, 321 };
-		String json = createRequestJSON(values);
-		HTTPClientJUnit.addResponse(json);
-
-		Positions positions = positionService.retrieve(1, AUTHORIZATION);
-
-		checkResponse(values, positions);
-	}
-
-	@Test
-	public void testUpdateListPositionsIntArrayOfIntInt_emptyList() {
-		int[] values = {};
-		String json = createUpdateJSON(values);
-		HTTPClientJUnit.addResponse(json);
-
-		Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
-
-		checkResponse(values, positions);
-	}
-
-	@Test
-	public void testUpdateListPositionsIntArrayOfIntInt_normalList() {
-		int[] values = { 234, 345, 123, 456, 321 };
-		String json = createUpdateJSON(values);
-		HTTPClientJUnit.addResponse(json);
-
-		Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
-
-		checkResponse(values, positions);
-	}
+	// @Test
+	// public void testRetrieveListPositionsInt_emptyList() {
+	// int[] values = {};
+	// String json = createRequestJSON(values);
+	// HTTPClientJUnit.addResponse(json);
+	//
+	// Positions positions = positionService.retrieve(1, AUTHORIZATION);
+	//
+	// checkResponse(values, positions);
+	// }
+	//
+	// @Test
+	// public void testRetrieveListPositionsInt_normalList() {
+	// int[] values = { 123, 234, 345, 456, 321 };
+	// String json = createRequestJSON(values);
+	// HTTPClientJUnit.addResponse(json);
+	//
+	// Positions positions = positionService.retrieve(1, AUTHORIZATION);
+	//
+	// checkResponse(values, positions);
+	// }
+	//
+	// @Test
+	// public void testUpdateListPositionsIntArrayOfIntInt_emptyList() {
+	// int[] values = {};
+	// String json = createUpdateJSON(values);
+	// HTTPClientJUnit.addResponse(json);
+	//
+	// Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
+	//
+	// checkResponse(values, positions);
+	// }
+	//
+	// @Test
+	// public void testUpdateListPositionsIntArrayOfIntInt_normalList() {
+	// int[] values = { 234, 345, 123, 456, 321 };
+	// String json = createUpdateJSON(values);
+	// HTTPClientJUnit.addResponse(json);
+	//
+	// Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
+	//
+	// checkResponse(values, positions);
+	// }
 
 	protected String createRequestJSON(int[] values) {
 		String json = "{\"id\": " + id + "," //
