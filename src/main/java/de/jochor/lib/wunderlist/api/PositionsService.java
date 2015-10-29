@@ -32,7 +32,7 @@ public interface PositionsService {
 	 *            {@link Authorization} containing client ID and access token
 	 * @return All requested {@link Positions} objects
 	 */
-	Positions[] retrieveListPositionsAll(Authorization authorization);
+	Positions[] retrieveAllListPositions(Authorization authorization);
 
 	/**
 	 * Retrieves the specified {@link Positions} object for {@link List}s.<br>
@@ -57,7 +57,7 @@ public interface PositionsService {
 	 *            {@link Authorization} containing client ID and access token
 	 * @return All requested {@link Positions} objects
 	 */
-	Positions[] retrieveTaskPositionsAll(int listID, Authorization authorization);
+	Positions[] retrieveAllTaskPositions(int listID, Authorization authorization);
 
 	/**
 	 * Retrieves the specified {@link Positions} object for {@link Task}s.<br>

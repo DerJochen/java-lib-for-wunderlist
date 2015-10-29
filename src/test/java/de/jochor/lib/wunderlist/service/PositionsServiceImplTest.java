@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
+import de.jochor.lib.http4j.junit.HTTPClientJUnit;
 import de.jochor.lib.wunderlist.model.Positions;
 
 /**
@@ -22,13 +25,38 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 	private static final int id = 34234234;
 	private static final int revision = 124;
 	private static final int listId = 34234;
-	private static final String type = "task_position";
+	private static final String type_list = "list_position";
+	private static final String type_task = "task_position";
 
-	private PositionsServiceImpl positionService;
+	private PositionsServiceImpl positionsService;
 
 	@Before
 	public void setUp() {
-		positionService = new PositionsServiceImpl();
+		positionsService = new PositionsServiceImpl();
+	}
+
+	@Test
+	public void testRetrieveAllListPositions_noPositions() {
+		HTTPClientJUnit.addResponse("[]");
+
+		Positions[] positions = positionsService.retrieveAllListPositions(AUTHORIZATION);
+		Assert.assertNotNull(positions);
+		Assert.assertEquals(0, positions.length);
+	}
+
+	@Test
+	public void testRetrieveListPositionsAll_onePositions() {
+		int[] values = { 123, 234, 345, 456, 321 };
+		Positions[] positionsArray = createListPositions(type_list, values);
+		String json = jsonEntityService.toJSON(positionsArray);
+		HTTPClientJUnit.addResponse(json);
+
+		Positions[] actuals = positionsService.retrieveAllListPositions(AUTHORIZATION);
+		Assert.assertNotNull(actuals);
+		Assert.assertEquals(positionsArray.length, actuals.length);
+		for (int i = 0, length = positionsArray.length; i < length; i++) {
+			assertEquals(positionsArray[i], actuals[i]);
+		}
 	}
 
 	// FIXME re-implement the test methods
@@ -76,36 +104,42 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 	// checkResponse(values, positions);
 	// }
 
-	protected String createRequestJSON(int[] values) {
-		String json = "{\"id\": " + id + "," //
-				+ "\"values\": " + Arrays.toString(values) + "," //
-				+ "\"revision\": " + (revision + 1) + "," //
-				+ "\"type\": \"" + type + "\"" //
-				+ "}";
-		return json;
+	private Positions[] createListPositions(String type, int[]... valuesArrays) {
+		int positionsCount = valuesArrays.length;
+		Positions[] positionsArray = new Positions[positionsCount];
+
+		for (int i = 0; i < positionsCount; i++) {
+			Positions positions = new Positions();
+
+			positions.setId(id + i);
+			positions.setRevision(revision + i);
+			positions.setValues(valuesArrays[i]);
+			positions.setType(type);
+
+			positionsArray[i] = positions;
+		}
+
+		return positionsArray;
 	}
 
-	protected String createUpdateJSON(int[] values) {
+	protected String createTaskUpdateJSON(int[] values) {
 		String json = "{\"id\": " + id + "," //
 				+ "\"values\": " + Arrays.toString(values) + "," //
 				+ "\"revision\": " + (revision + 1) + "," //
 				+ "\"list_id\": " + listId + "," //
-				+ "\"type\": \"" + type + "\"" //
+				+ "\"type\": \"" + type_task + "\"" //
 				+ "}";
 		return json;
 	}
 
-	protected void checkResponse(int[] values, Positions positions) {
-		Assert.assertNotNull(positions);
-		Assert.assertEquals(id, positions.getId());
-		Assert.assertEquals(revision + 1, positions.getRevision());
-		Assert.assertEquals(type, positions.getType());
-		int[] actualValues = positions.getValues();
-		Assert.assertNotNull(actualValues);
-		Assert.assertArrayEquals(values, actualValues);
-		if (positions.getList_id() != 0) {
-			Assert.assertEquals(listId, positions.getList_id());
-		}
+	private void assertEquals(Positions expected, Positions actual) {
+		Assert.assertNotNull(expected);
+		Assert.assertNotNull(actual);
+		Assert.assertEquals(expected.getId(), actual.getId());
+		Assert.assertEquals(expected.getRevision(), actual.getRevision());
+		Assert.assertEquals(expected.getList_id(), actual.getList_id());
+		Assert.assertArrayEquals(expected.getValues(), actual.getValues());
+		Assert.assertEquals(expected.getType(), actual.getType());
 	}
 
 }

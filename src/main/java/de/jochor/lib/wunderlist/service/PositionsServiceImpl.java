@@ -1,8 +1,11 @@
 package de.jochor.lib.wunderlist.service;
 
+import java.net.URI;
+
 import lombok.Setter;
 import de.jochor.lib.http4j.HTTPClient;
 import de.jochor.lib.http4j.HTTPClientFactory;
+import de.jochor.lib.http4j.model.GetRequest;
 import de.jochor.lib.json4j.JSONBindingService;
 import de.jochor.lib.json4j.JSONBindingServiceFactory;
 import de.jochor.lib.wunderlist.api.PositionsService;
@@ -58,9 +61,14 @@ public class PositionsServiceImpl implements PositionsService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Positions[] retrieveListPositionsAll(Authorization authorization) {
-		// TODO Auto-generated method stub
-		return null;
+	public Positions[] retrieveAllListPositions(Authorization authorization) {
+		 URI uri = uriProvider.getPositionsListRetrieveAllURI();
+		 GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
+		
+		 String responseJSON = httpClient.get(getRequest);
+		 Positions[] response = jsonEntityService.toEntity(responseJSON, Positions[].class);
+		
+		 return response;
 	}
 
 	/**
@@ -76,7 +84,7 @@ public class PositionsServiceImpl implements PositionsService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Positions[] retrieveTaskPositionsAll(int listID, Authorization authorization) {
+	public Positions[] retrieveAllTaskPositions(int listID, Authorization authorization) {
 		// TODO Auto-generated method stub
 		return null;
 	}

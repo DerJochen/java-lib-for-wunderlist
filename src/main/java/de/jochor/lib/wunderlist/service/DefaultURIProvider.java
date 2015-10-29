@@ -89,15 +89,24 @@ public class DefaultURIProvider implements URIProvider {
 		return uri;
 	}
 
+	/* Getters for Positions service URIs */
+
 	/**
 	 * {@inheritDoc}
 	 */
-	/* Getters for Positions service URIs */
-
 	@Override
-	public URI getPositionsRetrieveURI(int id) {
-		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, id);
+	public URI getPositionsListRetrieveAllURI() {
+		URI uri = getStaticURI(PROP_POSITIONS_LIST_RETRIEVE_ALL);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getPositionsListRetrieveURI(int positionsID) {
+		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_LIST_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, positionsID);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -106,9 +115,29 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getPositionsUpdateURI(int id) {
-		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_UPDATE_ONE);
-		String uriString = String.format(uriTpl, id);
+	public URI getPositionsTaskRetrieveAllURI() {
+		URI uri = getStaticURI(PROP_POSITIONS_TASK_RETRIEVE_ALL);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getPositionsTaskRetrieveURI(int positionsID) {
+		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_TASK_RETRIEVE_ONE);
+		String uriString = String.format(uriTpl, positionsID);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getPositionsTaskUpdateURI(int positionsID) {
+		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_TASK_UPDATE_ONE);
+		String uriString = String.format(uriTpl, positionsID);
 		URI uri = URI.create(uriString);
 		return uri;
 	}

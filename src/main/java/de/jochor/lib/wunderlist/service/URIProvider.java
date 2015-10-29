@@ -25,8 +25,11 @@ public interface URIProvider {
 	public static final String PROP_LIST_RETRIEVE_ONE = "url.wunderlist.list.retrieve.one.tpl";
 
 	// Property names for the Positions service
-	public static final String PROP_POSITIONS_RETRIEVE_ONE = "url.wunderlist.positions.retrieve.one.tpl";
-	public static final String PROP_POSITIONS_UPDATE_ONE = "url.wunderlist.positions.update.one.tpl";
+	public static final String PROP_POSITIONS_LIST_RETRIEVE_ALL = "url.wunderlist.positions.list.retrieve.all";
+	public static final String PROP_POSITIONS_LIST_RETRIEVE_ONE = "url.wunderlist.positions.list.retrieve.one.tpl";
+	public static final String PROP_POSITIONS_TASK_RETRIEVE_ALL = "url.wunderlist.positions.task.retrieve.all";
+	public static final String PROP_POSITIONS_TASK_RETRIEVE_ONE = "url.wunderlist.positions.task.retrieve.one.tpl";
+	public static final String PROP_POSITIONS_TASK_UPDATE_ONE = "url.wunderlist.positions.task.update.one.tpl";
 
 	// Property names for the Task service
 	public static final String PROP_TASK_RETRIEVE_ALL = "url.wunderlist.task.retrieve.all";
@@ -40,7 +43,7 @@ public interface URIProvider {
 	/* Getters for Authorization service URIs */
 
 	/**
-	 * Creates the URI to request authorization for access to the users lists. The user has to be redirected to this
+	 * Creates the {@link URI} to request authorization for access to the users lists. The user has to be redirected to this
 	 * URI.<br>
 	 * The parameters have to be included in the URI, since it is not used for a Java-based HTTP client request, but for
 	 * a HTTP redirect.
@@ -51,95 +54,118 @@ public interface URIProvider {
 	 *            Callback address of the client software
 	 * @param state
 	 *            Unguessable string
-	 * @return Authorization request URI containing the given values
+	 * @return Authorization request {@link URI} containing the given values
 	 */
 	URI getAuthorizationRequestURI(String clientID, String callback, String state);
 
 	/**
-	 * Getter for the URI to request the users access token at.
+	 * Getter for the {@link URI} to request the users access token at.
 	 *
-	 * @return URI to request the users access token at
+	 * @return {@link URI} to request the users access token at
 	 */
 	URI getAuthorizationAccessTokenURI();
 
 	/* Getters for List service URIs */
 
 	/**
-	 * Getter for the URI to retrieve all lists of the user.
+	 * Getter for the {@link URI} to retrieve all lists of the user.
 	 *
-	 * @return URI to retrieve all lists of the user
+	 * @return {@link URI} to retrieve all lists of the user
 	 */
 	URI getListRetrieveAllURI();
 
 	/**
-	 * Creates the URI to retrieve a specific list.
+	 * Creates the {@link URI} to retrieve a specific list.
 	 *
 	 * @param listID
 	 *            ID of the list to retrieve
-	 * @return URI to request a specific list
+	 * @return {@link URI} to request a specific list
 	 */
 	URI getListRetrieveURI(int listID);
 
 	/* Getters for Positions service URIs */
 
 	/**
-	 * Creates the URI to retrieve the positions of a specific list.
-	 *
-	 * @param listID
-	 *            ID of the list to retrieve the positions of
-	 * @return URI to request the positions of a specific list
+	 * Creates the {@link URI} to retrieve all {@link Positions} objects of the user for {@link List}s.
+	 * 
+	 * @return {@link URI} to request all {@link Positions} objects for {@link List}s
 	 */
-	URI getPositionsRetrieveURI(int listID);
+	URI getPositionsListRetrieveAllURI();
 
 	/**
-	 * Creates the URI to update the positions of a specific list.
+	 * Creates the {@link URI} to retrieve a specific {@link Positions} object for {@link List}s.
 	 *
-	 * @param listID
-	 *            ID of the list to retrieve the positions of
-	 * @return URI to update the positions of a specific list
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @return {@link URI} to request a specific {@link Positions} object for {@link List}s
 	 */
-	URI getPositionsUpdateURI(int listID);
+	URI getPositionsListRetrieveURI(int positionsID);
+
+	/**
+	 * Creates the {@link URI} to retrieve all {@link Positions} objects of the user for {@link Task}s.
+	 * 
+	 * @return {@link URI} to request all {@link Positions} objects for {@link Task}s
+	 */
+	URI getPositionsTaskRetrieveAllURI();
+
+	/**
+	 * Creates the {@link URI} to retrieve a specific {@link Positions} object for {@link Task}s.
+	 *
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @return {@link URI} to request a specific {@link Positions} object for {@link Task}s
+	 */
+	URI getPositionsTaskRetrieveURI(int positionsID);
+	
+	/**
+	 * Creates the {@link URI} to update a {@link Positions} object for {@link Task}s.
+	 *
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @return {@link URI} to update a {@link Positions} object for {@link Task}s
+	 */
+	URI getPositionsTaskUpdateURI(int positionsID);
 
 	/* Getters for Task service URIs */
 
 	/**
-	 * Creates the URI to request all {@link Task}s for a specific list.
+	 * Creates the {@link URI} to request all {@link Task}s for a specific list.
 	 *
-	 * @return URI to request the {@link Task}s
+	 * @return {@link URI} to request the {@link Task}s
 	 */
 	URI getTaskRetrieveAllURI();
 
 	/**
-	 * Creates the URI to retrieve a specific {@link Task}.
+	 * Creates the {@link URI} to retrieve a specific {@link Task}.
 	 *
 	 * @param taskID
 	 *            ID of the {@link Task} to retrieve
-	 * @return URI to request the {@link Task}
+	 * @return {@link URI} to request the {@link Task}
 	 */
 	URI getTaskRetrieveURI(int taskID);
 
 	/* Getters for Webhook service URIs */
 
 	/**
-	 * Creates the URI to request all {@link Webhook}s for a specific list.
+	 * Creates the {@link URI} to request all {@link Webhook}s for a specific list.
 	 *
-	 * @return URI to request the {@link Webhook}s
+	 * @return {@link URI} to request the {@link Webhook}s
 	 */
 	URI getWebhookRetrieveAllURI();
 
 	/**
-	 * Getter for the URI to create a new {@link Webhook} at.
+	 * Getter for the {@link URI} to create a new {@link Webhook} at.
 	 *
-	 * @return URI to create a new {@link Webhook} at
+	 * @return {@link URI} to create a new {@link Webhook} at
 	 */
 	URI getWebhookCreateURI();
 
 	/**
-	 * Creates the URI to delete a specific {@link Webhook}.
+	 * Creates the {@link URI} to delete a specific {@link Webhook}.
 	 *
 	 * @param webhookID
 	 *            ID of the {@link Webhook} to delete
-	 * @return URI to delete the {@link Webhook}
+	 * @return {@link URI} to delete the {@link Webhook}
 	 */
 	URI getWebhookDeleteURI(int webhookID);
 
