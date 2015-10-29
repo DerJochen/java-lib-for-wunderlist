@@ -31,6 +31,7 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		positionService = new PositionsServiceImpl();
 	}
 
+	// FIXME re-implement the test methods
 	// @Test
 	// public void testRetrieveListPositionsInt_emptyList() {
 	// int[] values = {};

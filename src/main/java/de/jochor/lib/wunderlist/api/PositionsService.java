@@ -11,8 +11,8 @@ import de.jochor.lib.wunderlist.model.Positions;
  * Unimplemented methods:
  * </p>
  * <ul>
- * <li>retrieveAll() - Retrieves the {@link Positions} for all {@link List}s of the user</li>
- * <li>...</li>
+ * <li>updateListPositions() - Updates the {@link Positions} for the users {@link List}s</li>
+ * <li>all suptasks methods</li>
  * </ul>
  *
  * <p>
@@ -24,67 +24,67 @@ import de.jochor.lib.wunderlist.model.Positions;
  */
 public interface PositionsService {
 
-	// /**
-	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
-	// * GET a.wunderlist.com/api/v1/list_positions/:id
-	// *
-	// * @param id
-	// * ID of the List ? (or of the Positions, needs checking)
-	// * @param authorization
-	// * {@link Authorization} containing client ID and access token
-	// * @return Requested {@link Positions} object
-	// */
-	Positions retrieveListPositions(Authorization authorization);
+	/**
+	 * Retrieves the {@link Positions} objects for all {@link List}s of the user.<br>
+	 * GET a.wunderlist.com/api/v1/list_positions
+	 *
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return All requested {@link Positions} objects
+	 */
+	Positions[] retrieveListPositionsAll(Authorization authorization);
 
-	// /**
-	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
-	// * GET a.wunderlist.com/api/v1/list_positions/:id
-	// *
-	// * @param id
-	// * ID of the List ? (or of the Positions, needs checking)
-	// * @param authorization
-	// * {@link Authorization} containing client ID and access token
-	// * @return Requested {@link Positions} object
-	// */
-	Positions retrieveListPositions(int id, Authorization authorization);
+	/**
+	 * Retrieves the specified {@link Positions} object for {@link List}s.<br>
+	 * GET a.wunderlist.com/api/v1/list_positions/:id
+	 *
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return Requested {@link Positions} object
+	 */
+	Positions retrieveListPositions(int positionsID, Authorization authorization);
 
-	// /**
-	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
-	// * GET a.wunderlist.com/api/v1/list_positions/:id
-	// *
-	// * @param id
-	// * ID of the List ? (or of the Positions, needs checking)
-	// * @param authorization
-	// * {@link Authorization} containing client ID and access token
-	// * @return Requested {@link Positions} object
-	// */
-	// Positions retrieveTaskPositions(int listID, Authorization authorization);
+	/**
+	 * Retrieves all {@link Positions} objects for a specified {@link List}.<br>
+	 * GET a.wunderlist.com/api/v1/task_positions<br>
+	 * Params: list_id
+	 *
+	 * @param listID
+	 *            ID of the {@link List}
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return All requested {@link Positions} objects
+	 */
+	Positions[] retrieveTaskPositionsAll(int listID, Authorization authorization);
 
-	// /**
-	// * Retrieves the {@link Positions} for a specified {@link List}.<br>
-	// * GET a.wunderlist.com/api/v1/list_positions/:id
-	// *
-	// * @param id
-	// * ID of the List ? (or of the Positions, needs checking)
-	// * @param authorization
-	// * {@link Authorization} containing client ID and access token
-	// * @return Requested {@link Positions} object
-	// */
-	// Positions retrieveTaskPositions(int positionsID, Authorization authorization);
+	/**
+	 * Retrieves the specified {@link Positions} object for {@link Task}s.<br>
+	 * GET a.wunderlist.com/api/v1/task_positions/:id
+	 *
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return Requested {@link Positions} object
+	 */
+	Positions retrieveTaskPositions(int positionsID, Authorization authorization);
 
-	// /**
-	// * PUT or PATCH a.wunderlist.com/api/v1/list_positions/:id
-	// *
-	// * @param id
-	// * ID of the List
-	// * @param values
-	// * Array of reordered item IDs
-	// * @param revision
-	// * Revision of the original {@link Positions}
-	// * @param authorization
-	// * {@link Authorization} containing client ID and access token
-	// * @return Updated {@link Positions} object
-	// */
-	Positions updateTaskPositions(int id, int[] values, int revision, Authorization authorization);
+	/**
+	 * Updates the {@link Positions} object for a {@link List}.<br>
+	 * PUT or PATCH a.wunderlist.com/api/v1/list_positions/:id
+	 *
+	 * @param positionsID
+	 *            ID of the {@link Positions} object
+	 * @param values
+	 *            Array of reordered {@link Task} IDs
+	 * @param revision
+	 *            Revision of the original {@link Positions} object
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return Updated {@link Positions} object
+	 */
+	Positions updateTaskPositions(int positionsID, int[] values, int revision, Authorization authorization);
 
 }

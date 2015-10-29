@@ -30,10 +30,7 @@ public class PositionsServiceImpl implements PositionsService {
 	@Setter
 	private URIProvider uriProvider = new DefaultURIProvider();
 
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
+	// TODO re-use parts of the old implementation
 	// public Positions retrieve(int id, Authorization authorization) {
 	// URI uri = uriProvider.getPositionsRetrieveURI(id);
 	// GetRequest getRequest = requestFactory.createGetRequest(uri, authorization);
@@ -44,10 +41,6 @@ public class PositionsServiceImpl implements PositionsService {
 	// return response;
 	// }
 	//
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
 	// public Positions update(int id, int[] values, int revision, Authorization authorization) {
 	// URI uri = uriProvider.getPositionsUpdateURI(id);
 	// UpdateListPositionsRequest request = new UpdateListPositionsRequest(values, revision);
@@ -61,26 +54,47 @@ public class PositionsServiceImpl implements PositionsService {
 	// return response;
 	// }
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Positions retrieveListPositions(Authorization authorization) {
+	public Positions[] retrieveListPositionsAll(Authorization authorization) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Positions retrieveListPositions(int id, Authorization authorization) {
+	public Positions retrieveListPositions(int positionsID, Authorization authorization) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Positions retrieveTaskPositions(int listID, Authorization authorization) {
+	public Positions[] retrieveTaskPositionsAll(int listID, Authorization authorization) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Positions updateTaskPositions(int id, int[] values, int revision, Authorization authorization) {
+	public Positions retrieveTaskPositions(int positionsID, Authorization authorization) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Positions updateTaskPositions(int positionsID, int[] values, int revision, Authorization authorization) {
 		// TODO Auto-generated method stub
 		return null;
 	}
