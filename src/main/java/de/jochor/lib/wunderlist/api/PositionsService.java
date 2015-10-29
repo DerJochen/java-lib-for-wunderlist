@@ -3,6 +3,7 @@ package de.jochor.lib.wunderlist.api;
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.List;
 import de.jochor.lib.wunderlist.model.Positions;
+import de.jochor.lib.wunderlist.model.Task;
 
 /**
  * Interface of the {@link PositionsService} of the Wunderlist REST API.

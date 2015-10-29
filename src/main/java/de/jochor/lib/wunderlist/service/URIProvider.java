@@ -2,6 +2,8 @@ package de.jochor.lib.wunderlist.service;
 
 import java.net.URI;
 
+import de.jochor.lib.wunderlist.model.List;
+import de.jochor.lib.wunderlist.model.Positions;
 import de.jochor.lib.wunderlist.model.Task;
 import de.jochor.lib.wunderlist.model.Webhook;
 
