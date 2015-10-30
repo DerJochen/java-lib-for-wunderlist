@@ -12,7 +12,7 @@ import de.jochor.lib.wunderlist.model.Task;
  * Unimplemented methods:
  * </p>
  * <ul>
- * <li>updateListPositions() - Updates the {@link Positions} for the users {@link List}s</li>
+ * <li>updateListPositions() - Updates a {@link Positions} object for {@link List}s</li>
  * <li>all suptasks methods</li>
  * </ul>
  *

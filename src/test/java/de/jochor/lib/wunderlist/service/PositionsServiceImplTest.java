@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.jochor.lib.http4j.junit.HTTPClientJUnit;
@@ -45,7 +44,7 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 	}
 
 	@Test
-	public void testRetrieveListPositionsAll_onePositions() {
+	public void testRetrieveAllListPositions_onePositions() {
 		int[] values = { 123, 234, 345, 456, 321 };
 		Positions[] positionsArray = createListPositions(type_list, values);
 		String json = jsonEntityService.toJSON(positionsArray);
@@ -59,50 +58,70 @@ public class PositionsServiceImplTest extends AbstractRESTClientServiceTest {
 		}
 	}
 
-	// FIXME re-implement the test methods
-	// @Test
-	// public void testRetrieveListPositionsInt_emptyList() {
-	// int[] values = {};
-	// String json = createRequestJSON(values);
-	// HTTPClientJUnit.addResponse(json);
-	//
-	// Positions positions = positionService.retrieve(1, AUTHORIZATION);
-	//
-	// checkResponse(values, positions);
-	// }
-	//
-	// @Test
-	// public void testRetrieveListPositionsInt_normalList() {
-	// int[] values = { 123, 234, 345, 456, 321 };
-	// String json = createRequestJSON(values);
-	// HTTPClientJUnit.addResponse(json);
-	//
-	// Positions positions = positionService.retrieve(1, AUTHORIZATION);
-	//
-	// checkResponse(values, positions);
-	// }
-	//
-	// @Test
-	// public void testUpdateListPositionsIntArrayOfIntInt_emptyList() {
-	// int[] values = {};
-	// String json = createUpdateJSON(values);
-	// HTTPClientJUnit.addResponse(json);
-	//
-	// Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
-	//
-	// checkResponse(values, positions);
-	// }
-	//
-	// @Test
-	// public void testUpdateListPositionsIntArrayOfIntInt_normalList() {
-	// int[] values = { 234, 345, 123, 456, 321 };
-	// String json = createUpdateJSON(values);
-	// HTTPClientJUnit.addResponse(json);
-	//
-	// Positions positions = positionService.update(id, values, revision, AUTHORIZATION);
-	//
-	// checkResponse(values, positions);
-	// }
+	@Test
+	public void testRetrieveListPositions() {
+		int[] values = { 123, 234, 345, 456, 321 };
+		Positions[] positionsArray = createListPositions(type_list, values);
+		Positions positions = positionsArray[0];
+		String json = jsonEntityService.toJSON(positions);
+		HTTPClientJUnit.addResponse(json);
+
+		Positions actual = positionsService.retrieveListPositions(id, AUTHORIZATION);
+		Assert.assertNotNull(actual);
+		assertEquals(positions, actual);
+	}
+
+	@Test
+	public void testRetrieveAllTaskPositions_noPositions() {
+		HTTPClientJUnit.addResponse("[]");
+
+		int listID = 843;
+		Positions[] positions = positionsService.retrieveAllTaskPositions(listID, AUTHORIZATION);
+		Assert.assertNotNull(positions);
+		Assert.assertEquals(0, positions.length);
+	}
+
+	@Test
+	public void testRetrieveAllTaskPositions_onePositions() {
+		int[] values = { 123, 234, 345, 456, 321 };
+		Positions[] positionsArray = createListPositions(type_task, values);
+		String json = jsonEntityService.toJSON(positionsArray);
+		HTTPClientJUnit.addResponse(json);
+
+		int listID = 843;
+		Positions[] actuals = positionsService.retrieveAllTaskPositions(listID, AUTHORIZATION);
+		Assert.assertNotNull(actuals);
+		Assert.assertEquals(positionsArray.length, actuals.length);
+		for (int i = 0, length = positionsArray.length; i < length; i++) {
+			assertEquals(positionsArray[i], actuals[i]);
+		}
+	}
+
+	@Test
+	public void testRetrieveTaskPositions() {
+		int[] values = { 123, 234, 345, 456, 321 };
+		Positions[] positionsArray = createListPositions(type_task, values);
+		Positions positions = positionsArray[0];
+		String json = jsonEntityService.toJSON(positions);
+		HTTPClientJUnit.addResponse(json);
+
+		Positions actual = positionsService.retrieveTaskPositions(id, AUTHORIZATION);
+		Assert.assertNotNull(actual);
+		assertEquals(positions, actual);
+	}
+
+	@Test
+	public void testUpdateTaskPositions() {
+		int[] values = { 123, 234, 345, 456, 321 };
+		Positions[] positionsArray = createListPositions(type_task, values);
+		Positions positions = positionsArray[0];
+		String json = jsonEntityService.toJSON(positions);
+		HTTPClientJUnit.addResponse(json);
+
+		Positions actual = positionsService.updateTaskPositions(id, values, positions.getRevision(), AUTHORIZATION);
+		Assert.assertNotNull(actual);
+		assertEquals(positions, actual);
+	}
 
 	private Positions[] createListPositions(String type, int[]... valuesArrays) {
 		int positionsCount = valuesArrays.length;

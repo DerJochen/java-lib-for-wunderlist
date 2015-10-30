@@ -3,10 +3,10 @@ package de.jochor.lib.wunderlist.transfer;
 import org.junit.Assert;
 
 import de.jochor.lib.wunderlist.AbstractRoundtripTest;
-import de.jochor.lib.wunderlist.transfer.UpdateListPositionsRequest;
+import de.jochor.lib.wunderlist.transfer.UpdatePositionsRequest;
 
 /**
- * Round-trip test for a {@link UpdateListPositionsRequest}.
+ * Round-trip test for a {@link UpdatePositionsRequest}.
  * 
  * <pre>
  * <code>json
@@ -23,19 +23,19 @@ import de.jochor.lib.wunderlist.transfer.UpdateListPositionsRequest;
  * @author Jochen Hormes
  *
  */
-public class UpdateListPositionsRequestRoundtripTest extends AbstractRoundtripTest<UpdateListPositionsRequest> {
+public class UpdatePositionsRequestRoundtripTest extends AbstractRoundtripTest<UpdatePositionsRequest> {
 
 	private static final int[] values = { 9, 68, 34, 3 };
 	private static final int revision = 54;
 
 	@Override
-	protected UpdateListPositionsRequest createEntity() {
-		UpdateListPositionsRequest entity = new UpdateListPositionsRequest(values, revision);
+	protected UpdatePositionsRequest createEntity() {
+		UpdatePositionsRequest entity = new UpdatePositionsRequest(values, revision);
 		return entity;
 	}
 
 	@Override
-	protected void assertEquals(UpdateListPositionsRequest expected, UpdateListPositionsRequest actual) {
+	protected void assertEquals(UpdatePositionsRequest expected, UpdatePositionsRequest actual) {
 		Assert.assertNotNull(expected);
 		Assert.assertNotNull(actual);
 		Assert.assertArrayEquals(expected.getValues(), actual.getValues());

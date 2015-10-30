@@ -9,16 +9,16 @@ import lombok.Setter;
  * <pre>
  * <code>json
  * {
- * "id": 62,
- * "list_id": 105743947,
- * "membership_id": 49876097,
- * "membership_type": "Membership",
- * "url": "https:/yourhost.com/foo",
- * "processor_type": "generic",
- * "configuration": "",
- * "created_at": "2015-03-03T15:32:09.272Z",
- * "created_by_id": 84646989,
- * "updated_at": "2015-03-03T15:32:09.272Z"
+ *   "id": 62,
+ *   "list_id": 105743947,
+ *   "membership_id": 49876097,
+ *   "membership_type": "Membership",
+ *   "url": "https:/yourhost.com/foo",
+ *   "processor_type": "generic",
+ *   "configuration": "",
+ *   "created_at": "2015-03-03T15:32:09.272Z",
+ *   "created_by_id": 84646989,
+ *   "updated_at": "2015-03-03T15:32:09.272Z"
  * }</code>
  * </pre>
  *
