@@ -12,8 +12,11 @@ The project is still work-in-progress and not ready to be used!
 
 ### PositionsService
 
-- ~~retrieve(int)~~: Retrieves the positions for a list, identified by ID (not yet implemented)
-- ~~update(int, int[], int)~~: Updates the positions for one list, identified by ID and revision (not yet implemented)
+- retrieveAllListPositions(): Retrieves all list positions objects for the user
+- retrieveListPositions(int): Retrieves one list positions object
+- retrieveAllTaskPositions(int): Retrieves all task positions objects for one list
+- retrieveTaskPositions(int): Retrieves one task positions object
+- updateTaskPositions(int, int[], int): Updates one task positions object
 
 ### TaskService
 
