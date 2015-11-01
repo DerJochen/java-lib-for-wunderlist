@@ -4,7 +4,7 @@
 
 	<groupId>de.jochor.wunderlist</groupId>
 	<artifactId>java-lib-for-wunderlist</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<!-- Type T -->
 
 	<parent>
@@ -15,12 +15,12 @@
 	</parent>
 
 	<properties>
-		<version.http4j>0.2.2-SNAPSHOT</version.http4j>
+		<version.http4j>0.2.2</version.http4j>
 		<version.json4j>0.2.1</version.json4j>
 		<version.lombok>1.16.4</version.lombok>
 
 		<version.junit>4.12</version.junit>
-		<version.http4j-junit>0.2.2-SNAPSHOT</version.http4j-junit>
+		<version.http4j-junit>0.2.2</version.http4j-junit>
 		<version.json4j-gson>0.2.1</version.json4j-gson>
 	</properties>
 

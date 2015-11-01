@@ -5,6 +5,11 @@ The project is still work-in-progress and not ready to be used!
 
 ## Features
 
+### AuthorizationService
+
+- buildAuthorisationRequestURI(String, String, String): Builds the URI to redirect the user to for authorization
+- retrieveAccessToken(String, String, String): Retrieves the users access token from Wunderlist
+
 ### ListService
 
 - retrieveAll(): Retrieves all lists
@@ -38,7 +43,7 @@ The project is still work-in-progress and not ready to be used!
 <dependency>
 	<groupId>de.jochor.wunderlist</groupId>
 	<artifactId>java-lib-for-wunderlist</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 </dependency>
 ```
 
