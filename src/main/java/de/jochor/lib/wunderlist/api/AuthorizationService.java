@@ -28,7 +28,7 @@ public interface AuthorizationService {
 	URI buildAuthorisationRequestURI(String clientID, String callback, String state);
 
 	/**
-	 *
+	 * Retrieves the users access token from Wunderlist<br>
 	 * POST https://www.wunderlist.com/oauth/access_token
 	 *
 	 * @param clientID

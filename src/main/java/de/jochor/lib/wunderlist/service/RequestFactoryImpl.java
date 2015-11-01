@@ -9,12 +9,26 @@ import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.wunderlist.model.Authorization;
 
+/**
+ * Implementation of the {@link RequestFactory} interface. It is a convenience service that creates pre-configured HTTP
+ * request objects.
+ *
+ * <p>
+ * <b>Started:</b> 2015-09-22
+ * </p>
+ *
+ * @author Jochen Hormes
+ *
+ */
 public class RequestFactoryImpl implements RequestFactory {
 
 	private static final String CLIENT_ID = "X-Client-ID";
 
 	private static final String ACCESS_TOKEN = "X-Access-Token";
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public DeleteRequest createDeleteRequest(URI uri, Authorization authorization) {
 		DeleteRequest request = new DeleteRequest(uri);
@@ -22,6 +36,9 @@ public class RequestFactoryImpl implements RequestFactory {
 		return request;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public GetRequest createGetRequest(URI uri, Authorization authorization) {
 		GetRequest request = new GetRequest(uri);
@@ -29,6 +46,9 @@ public class RequestFactoryImpl implements RequestFactory {
 		return request;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PostRequest createPostRequest(URI uri, Authorization authorization, String body) {
 		PostRequest request = new PostRequest(uri, body);
@@ -37,6 +57,9 @@ public class RequestFactoryImpl implements RequestFactory {
 		return request;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PutRequest createPutRequest(URI uri, Authorization authorization, String body) {
 		PutRequest request = new PutRequest(uri, body);

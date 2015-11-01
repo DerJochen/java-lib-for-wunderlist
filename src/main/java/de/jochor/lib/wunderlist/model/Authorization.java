@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Holds all security elements this library need to access the Wunderlist REST API.
  *
  * <p>
  * <b>Started:</b> 2015-09-22
