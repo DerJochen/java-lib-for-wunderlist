@@ -12,7 +12,9 @@ import lombok.Setter;
  *   "id": 131232,
  *   "values": [123, 234, 345, 456],
  *   "revision": 1,
- *   "type": "list_position"
+ *   "type": "list_position",
+ *   "user_id": 43987865,
+ *   "list_id": 326765049
  * }</code>
  * </pre>
  *
@@ -34,6 +36,8 @@ public class Positions {
 	private String type;
 
 	private int[] values;
+
+	private int user_id;
 
 	private int list_id;
 
