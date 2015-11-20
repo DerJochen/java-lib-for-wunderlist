@@ -22,10 +22,37 @@ public class DefaultURIProvider implements URIProvider {
 
 	private static final String WUNDERLIST_URIS_PROPERTIES = "wunderlist-uris.properties";
 
+	// Property names for the List service
+	private static final String PROP_AUTHORIZATION_REDIRECT = "url.auth.wunderlist.redirect.tpl";
+	private static final String PROP_AUTHORIZATION_ACCESSTOKEN = "url.auth.wunderlist.accesstoken";
+
+	// Property names for the List service
+	private static final String PROP_LIST_RETRIEVE_ALL = "url.wunderlist.list.retrieve.all";
+	private static final String PROP_LIST_RETRIEVE_ONE = "url.wunderlist.list.retrieve.one.tpl";
+
+	// Property names for the Positions service
+	private static final String PROP_POSITIONS_LIST_RETRIEVE_ALL = "url.wunderlist.positions.list.retrieve.all";
+	private static final String PROP_POSITIONS_LIST_RETRIEVE_ONE = "url.wunderlist.positions.list.retrieve.one.tpl";
+	private static final String PROP_POSITIONS_TASK_RETRIEVE_ALL = "url.wunderlist.positions.task.retrieve.all";
+	private static final String PROP_POSITIONS_TASK_RETRIEVE_ONE = "url.wunderlist.positions.task.retrieve.one.tpl";
+	private static final String PROP_POSITIONS_TASK_UPDATE_ONE = "url.wunderlist.positions.task.update.one.tpl";
+
+	// Property names for the Task service
+	private static final String PROP_TASK_RETRIEVE_ALL = "url.wunderlist.task.retrieve.all";
+	private static final String PROP_TASK_RETRIEVE_ONE = "url.wunderlist.task.retrieve.one.tpl";
+
+	// Property names for the Webhook service
+	private static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.retrieve.all";
+	private static final String PROP_WEBHOOK_CREATE_ONE = "url.wunderlist.webhook.create.one";
+	private static final String PROP_WEBHOOK_DELETE_ONE = "url.wunderlist.webhook.delete.one.tpl";
+
 	private final Properties uriStrings = new Properties();
 
 	private final HashMap<String, URI> uris = new HashMap<>();
 
+	/**
+	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a properties file.
+	 */
 	public DefaultURIProvider() {
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inStream = contextClassLoader.getResourceAsStream(WUNDERLIST_URIS_PROPERTIES)) {

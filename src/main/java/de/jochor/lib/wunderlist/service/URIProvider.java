@@ -18,30 +18,6 @@ import de.jochor.lib.wunderlist.model.Webhook;
  */
 public interface URIProvider {
 
-	// Property names for the List service
-	public static final String PROP_AUTHORIZATION_REDIRECT = "url.auth.wunderlist.redirect.tpl";
-	public static final String PROP_AUTHORIZATION_ACCESSTOKEN = "url.auth.wunderlist.accesstoken";
-
-	// Property names for the List service
-	public static final String PROP_LIST_RETRIEVE_ALL = "url.wunderlist.list.retrieve.all";
-	public static final String PROP_LIST_RETRIEVE_ONE = "url.wunderlist.list.retrieve.one.tpl";
-
-	// Property names for the Positions service
-	public static final String PROP_POSITIONS_LIST_RETRIEVE_ALL = "url.wunderlist.positions.list.retrieve.all";
-	public static final String PROP_POSITIONS_LIST_RETRIEVE_ONE = "url.wunderlist.positions.list.retrieve.one.tpl";
-	public static final String PROP_POSITIONS_TASK_RETRIEVE_ALL = "url.wunderlist.positions.task.retrieve.all";
-	public static final String PROP_POSITIONS_TASK_RETRIEVE_ONE = "url.wunderlist.positions.task.retrieve.one.tpl";
-	public static final String PROP_POSITIONS_TASK_UPDATE_ONE = "url.wunderlist.positions.task.update.one.tpl";
-
-	// Property names for the Task service
-	public static final String PROP_TASK_RETRIEVE_ALL = "url.wunderlist.task.retrieve.all";
-	public static final String PROP_TASK_RETRIEVE_ONE = "url.wunderlist.task.retrieve.one.tpl";
-
-	// Property names for the Webhook service
-	public static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.retrieve.all";
-	public static final String PROP_WEBHOOK_CREATE_ONE = "url.wunderlist.webhook.create.one";
-	public static final String PROP_WEBHOOK_DELETE_ONE = "url.wunderlist.webhook.delete.one.tpl";
-
 	/* Getters for Authorization service URIs */
 
 	/**
