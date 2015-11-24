@@ -52,13 +52,15 @@ public class DefaultURIProvider implements URIProvider {
 
 	/**
 	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a properties file.
+	 *
+	 * @throws IOException
 	 */
 	public DefaultURIProvider() {
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inStream = contextClassLoader.getResourceAsStream(WUNDERLIST_URIS_PROPERTIES)) {
 			uriStrings.load(inStream);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new InitException(e);
 		}
 	}
 
@@ -69,6 +71,7 @@ public class DefaultURIProvider implements URIProvider {
 	 */
 	@Override
 	public URI getAuthorizationRequestURI(String clientID, String callback, String state) {
+		URI uri = null;
 		String uriTpl = uriStrings.getProperty(PROP_AUTHORIZATION_REDIRECT);
 		try {
 			String utf8 = StandardCharsets.UTF_8.name();
@@ -77,12 +80,12 @@ public class DefaultURIProvider implements URIProvider {
 			String stateEnc = URLEncoder.encode(state, utf8);
 
 			String uriString = String.format(uriTpl, clientIDEnc, callbackEnc, stateEnc);
-			URI uri = URI.create(uriString);
-
-			return uri;
+			uri = URI.create(uriString);
 		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
+			// Encoding name is taken from a system constant. This can never happen.
 		}
+
+		return uri;
 	}
 
 	/**
