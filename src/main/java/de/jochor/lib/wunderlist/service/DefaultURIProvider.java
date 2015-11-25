@@ -52,8 +52,6 @@ public class DefaultURIProvider implements URIProvider {
 
 	/**
 	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a properties file.
-	 *
-	 * @throws IOException
 	 */
 	public DefaultURIProvider() {
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
