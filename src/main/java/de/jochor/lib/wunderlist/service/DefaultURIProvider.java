@@ -1,11 +1,14 @@
 package de.jochor.lib.wunderlist.service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -20,7 +23,7 @@ import java.util.Properties;
  */
 public class DefaultURIProvider implements URIProvider {
 
-	private static final String WUNDERLIST_URIS_PROPERTIES = "wunderlist-uris.properties";
+	private static final Path WUNDERLIST_URIS_PROPERTIES = Paths.get("wunderlist-uris.properties");
 
 	// Property names for the List service
 	private static final String PROP_AUTHORIZATION_REDIRECT = "url.auth.wunderlist.redirect.tpl";
@@ -51,11 +54,23 @@ public class DefaultURIProvider implements URIProvider {
 	private final HashMap<String, URI> uris = new HashMap<>();
 
 	/**
-	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a properties file.
+	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a predefined properties
+	 * file.
 	 */
 	public DefaultURIProvider() {
+		this(WUNDERLIST_URIS_PROPERTIES);
+	}
+
+	/**
+	 * Default constructor for the {@link DefaultURIProvider}. Loads the {@link URI} data from a properties file.
+	 */
+	public DefaultURIProvider(Path propertiesFile) {
 		ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-		try (InputStream inStream = contextClassLoader.getResourceAsStream(WUNDERLIST_URIS_PROPERTIES)) {
+		try (InputStream inStream = contextClassLoader.getResourceAsStream(propertiesFile.toString())) {
+			if (inStream == null) {
+				throw new FileNotFoundException(propertiesFile.toString());
+			}
+
 			uriStrings.load(inStream);
 		} catch (IOException e) {
 			throw new InitException(e);
@@ -223,7 +238,7 @@ public class DefaultURIProvider implements URIProvider {
 		return uri;
 	}
 
-	private URI getStaticURI(String uriName) {
+	protected URI getStaticURI(String uriName) {
 		if (uriName.endsWith(".tpl")) {
 			throw new UnsupportedOperationException("The name " + uriName + " points to a dynamic URI.");
 		}
@@ -232,6 +247,8 @@ public class DefaultURIProvider implements URIProvider {
 		if (uri == null) {
 			String uriString = uriStrings.getProperty(uriName);
 			uri = URI.create(uriString);
+
+			uris.put(uriName, uri);
 		}
 
 		return uri;

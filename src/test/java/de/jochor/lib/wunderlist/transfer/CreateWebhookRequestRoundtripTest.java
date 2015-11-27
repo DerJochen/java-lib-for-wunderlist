@@ -1,13 +1,13 @@
 package de.jochor.lib.wunderlist.transfer;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 import de.jochor.lib.wunderlist.AbstractRoundtripTest;
-import de.jochor.lib.wunderlist.transfer.CreateWebhookRequest;
 
 /**
  * Round-trip test for a {@link CreateWebhookRequest}.
- * 
+ *
  * <pre>
  * <code>json
  * {
@@ -17,7 +17,7 @@ import de.jochor.lib.wunderlist.transfer.CreateWebhookRequest;
  *   "configuration":""}
  * }</code>
  * </pre>
- * 
+ *
  * <p>
  * <b>Started:</b> 2015-10-25
  * </p>
@@ -31,6 +31,15 @@ public class CreateWebhookRequestRoundtripTest extends AbstractRoundtripTest<Cre
 	private static final String url = "http://my.callback.url/";
 	private static final String processor_type = "The processor type";
 	private static final String configuration = "The configuration";
+
+	@Test
+	public void testSecontConstructor() {
+		CreateWebhookRequest entity1 = new CreateWebhookRequest(list_id, url, processor_type);
+		entity1.setConfiguration(configuration);
+		CreateWebhookRequest entity2 = createEntity();
+
+		assertEquals(entity2, entity1);
+	}
 
 	@Override
 	protected CreateWebhookRequest createEntity() {
