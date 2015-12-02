@@ -15,13 +15,13 @@
 	</parent>
 
 	<properties>
-		<version.http4j>0.3.1</version.http4j>
-		<version.json4j>0.3.1</version.json4j>
+		<version.http4j>0.3.2</version.http4j>
+		<version.json4j>0.3.2</version.json4j>
 		<version.lombok>1.16.4</version.lombok>
 
 		<version.junit>4.12</version.junit>
-		<version.http4j-junit>0.3.1</version.http4j-junit>
-		<version.json4j-gson>0.3.1</version.json4j-gson>
+		<version.http4j-junit>0.3.2</version.http4j-junit>
+		<version.json4j-gson>0.3.2</version.json4j-gson>
 	</properties>
 
 	<dependencies>
