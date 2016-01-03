@@ -1,7 +1,7 @@
 # java-lib-for-wunderlist
 This project is a Java library for the REST API of Wunderlist.
 
-The project is still work-in-progress and not ready to be used!
+The project is partly usable and partly still work-in-progress. The described methods should work as expected, but some have only be called in a few jUnit tests and not in real-life applications.
 
 ## Features
 
@@ -43,7 +43,7 @@ The project is still work-in-progress and not ready to be used!
 <dependency>
 	<groupId>de.jochor.wunderlist</groupId>
 	<artifactId>java-lib-for-wunderlist</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 </dependency>
 ```
 
