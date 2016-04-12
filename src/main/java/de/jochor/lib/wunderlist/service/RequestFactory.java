@@ -4,6 +4,7 @@ import java.net.URI;
 
 import de.jochor.lib.http4j.model.DeleteRequest;
 import de.jochor.lib.http4j.model.GetRequest;
+import de.jochor.lib.http4j.model.PatchRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.wunderlist.model.Authorization;
@@ -41,6 +42,19 @@ public interface RequestFactory {
 	 * @return New {@link GetRequest} object
 	 */
 	GetRequest createGetRequest(URI uri, Authorization authorization);
+
+	/**
+	 * Creates a pre-configured HTTP PATCH request object.
+	 *
+	 * @param uri
+	 *            Address to call
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @param body
+	 *            Body for the request
+	 * @return New {@link PatchRequest} object
+	 */
+	PatchRequest createPatchRequest(URI uri, Authorization authorization, String body);
 
 	/**
 	 * Creates a pre-configured HTTP POST request object.

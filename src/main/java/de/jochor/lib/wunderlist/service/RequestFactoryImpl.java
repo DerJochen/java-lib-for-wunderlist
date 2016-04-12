@@ -5,6 +5,7 @@ import java.net.URI;
 import de.jochor.lib.http4j.model.BaseRequest;
 import de.jochor.lib.http4j.model.DeleteRequest;
 import de.jochor.lib.http4j.model.GetRequest;
+import de.jochor.lib.http4j.model.PatchRequest;
 import de.jochor.lib.http4j.model.PostRequest;
 import de.jochor.lib.http4j.model.PutRequest;
 import de.jochor.lib.wunderlist.model.Authorization;
@@ -43,6 +44,17 @@ public class RequestFactoryImpl implements RequestFactory {
 	public GetRequest createGetRequest(URI uri, Authorization authorization) {
 		GetRequest request = new GetRequest(uri);
 		addAuthorization(request, authorization);
+		return request;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public PatchRequest createPatchRequest(URI uri, Authorization authorization, String body) {
+		PatchRequest request = new PatchRequest(uri, body);
+		addAuthorization(request, authorization);
+
 		return request;
 	}
 

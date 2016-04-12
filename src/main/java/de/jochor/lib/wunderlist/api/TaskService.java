@@ -1,5 +1,8 @@
 package de.jochor.lib.wunderlist.api;
 
+import java.util.List;
+import java.util.Map;
+
 import de.jochor.lib.wunderlist.model.Authorization;
 import de.jochor.lib.wunderlist.model.Task;
 
@@ -55,11 +58,29 @@ public interface TaskService {
 	 * GET a.wunderlist.com/api/v1/tasks/:id
 	 *
 	 * @param taskID
-	 *            ID of the task to retrieve
+	 *            ID of the {@link Task} to retrieve
 	 * @param authorization
 	 *            {@link Authorization} containing client ID and access token
 	 * @return Specified {@link Task}
 	 */
 	Task retrieve(int taskID, Authorization authorization);
+
+	/**
+	 * Update a {@link Task} by overwriting properties.<br>
+	 * PATCH a.wunderlist.com/api/v1/tasks/:id
+	 *
+	 * @param taskId
+	 *            ID of the {@link Task} to update
+	 * @param changes
+	 *            Map containing the changed properties
+	 * @param removed
+	 *            List of the removed properties
+	 * @param revision
+	 *            Revision of the original {@link Task} object
+	 * @param authorization
+	 *            {@link Authorization} containing client ID and access token
+	 * @return Updated {@link Task}
+	 */
+	Task update(int taskId, Map<String, Object> changes, List<String> removed, int revision, Authorization authorization);
 
 }

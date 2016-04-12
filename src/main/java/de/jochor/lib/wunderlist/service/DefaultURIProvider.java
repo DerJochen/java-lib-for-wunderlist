@@ -43,6 +43,7 @@ public class DefaultURIProvider implements URIProvider {
 	// Property names for the Task service
 	private static final String PROP_TASK_RETRIEVE_ALL = "url.wunderlist.task.retrieve.all";
 	private static final String PROP_TASK_RETRIEVE_ONE = "url.wunderlist.task.retrieve.one.tpl";
+	private static final String PROP_TASK_UPDATE_ONE = "url.wunderlist.task.retrieve.update.tpl";
 
 	// Property names for the Webhook service
 	private static final String PROP_WEBHOOK_RETRIEVE_ALL = "url.wunderlist.webhook.retrieve.all";
@@ -86,16 +87,16 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getAuthorizationRequestURI(String clientID, String callback, String state) {
+	public URI getAuthorizationRequestURI(String clientId, String callback, String state) {
 		URI uri = null;
 		String uriTpl = uriStrings.getProperty(PROP_AUTHORIZATION_REDIRECT);
 		try {
 			String utf8 = StandardCharsets.UTF_8.name();
-			String clientIDEnc = URLEncoder.encode(clientID, utf8);
+			String clientIdEnc = URLEncoder.encode(clientId, utf8);
 			String callbackEnc = URLEncoder.encode(callback, utf8);
 			String stateEnc = URLEncoder.encode(state, utf8);
 
-			String uriString = String.format(uriTpl, clientIDEnc, callbackEnc, stateEnc);
+			String uriString = String.format(uriTpl, clientIdEnc, callbackEnc, stateEnc);
 			uri = URI.create(uriString);
 		} catch (UnsupportedEncodingException e) {
 			// Encoding name is taken from a system constant. This can never happen.
@@ -128,9 +129,9 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getListRetrieveURI(int listID) {
+	public URI getListRetrieveURI(int listId) {
 		String uriTpl = uriStrings.getProperty(PROP_LIST_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, listID);
+		String uriString = String.format(uriTpl, listId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -150,9 +151,9 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getPositionsListRetrieveURI(int positionsID) {
+	public URI getPositionsListRetrieveURI(int positionsId) {
 		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_LIST_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, positionsID);
+		String uriString = String.format(uriTpl, positionsId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -170,9 +171,9 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getPositionsTaskRetrieveURI(int positionsID) {
+	public URI getPositionsTaskRetrieveURI(int positionsId) {
 		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_TASK_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, positionsID);
+		String uriString = String.format(uriTpl, positionsId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -181,9 +182,9 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getPositionsTaskUpdateURI(int positionsID) {
+	public URI getPositionsTaskUpdateURI(int positionsId) {
 		String uriTpl = uriStrings.getProperty(PROP_POSITIONS_TASK_UPDATE_ONE);
-		String uriString = String.format(uriTpl, positionsID);
+		String uriString = String.format(uriTpl, positionsId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -203,9 +204,20 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getTaskRetrieveURI(int taskID) {
+	public URI getTaskRetrieveURI(int taskId) {
 		String uriTpl = uriStrings.getProperty(PROP_TASK_RETRIEVE_ONE);
-		String uriString = String.format(uriTpl, taskID);
+		String uriString = String.format(uriTpl, taskId);
+		URI uri = URI.create(uriString);
+		return uri;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public URI getTaskUpdateURI(int taskId) {
+		String uriTpl = uriStrings.getProperty(PROP_TASK_UPDATE_ONE);
+		String uriString = String.format(uriTpl, taskId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}
@@ -234,9 +246,9 @@ public class DefaultURIProvider implements URIProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public URI getWebhookDeleteURI(int webhookID) {
+	public URI getWebhookDeleteURI(int webhookId) {
 		String uriTpl = uriStrings.getProperty(PROP_WEBHOOK_DELETE_ONE);
-		String uriString = String.format(uriTpl, webhookID);
+		String uriString = String.format(uriTpl, webhookId);
 		URI uri = URI.create(uriString);
 		return uri;
 	}

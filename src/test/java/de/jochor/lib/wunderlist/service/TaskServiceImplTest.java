@@ -1,5 +1,8 @@
 package de.jochor.lib.wunderlist.service;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -85,6 +88,23 @@ public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 		Task task = taskService.retrieve(id, AUTHORIZATION);
 		Assert.assertNotNull(task);
 		assertEquals(tasks[0], task);
+	}
+
+	@Test
+	public void testUpdate() {
+		Task task = createTasks(1, false)[0];
+
+		task.setStarred(!task.isStarred());
+		task.setDue_date(null);
+
+		String json = jsonEntityService.toJSON(task);
+		HTTPClientJUnit.addResponse(json);
+
+		HashMap<String, Object> changes = new HashMap<>();
+		changes.put("starred", Boolean.toString(task.isStarred()));
+		Task task2 = taskService.update(task.getId(), changes, Arrays.asList("due_date"), task.getRevision(), AUTHORIZATION);
+		Assert.assertNotNull(task);
+		assertEquals(task, task2);
 	}
 
 	private Task[] createTasks(int count, boolean completed) {
