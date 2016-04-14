@@ -2,6 +2,7 @@ package de.jochor.lib.wunderlist.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Java representation of a JSON object encapsulating a task.
@@ -38,6 +39,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString(of = { "id", "title" })
 public class Task {
 
 	private int id;
@@ -51,7 +53,7 @@ public class Task {
 	private int created_by_id;
 
 	private String created_by_request_id;
-	
+
 	private boolean completed;
 
 	private String due_date;
@@ -67,7 +69,7 @@ public class Task {
 	private boolean starred;
 
 	private String title;
-	
+
 	private String type;
 
 	private String completed_at;

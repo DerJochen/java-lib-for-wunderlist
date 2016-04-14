@@ -2,6 +2,7 @@ package de.jochor.lib.wunderlist.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Java representation of a JSON object encapsulating a list.
@@ -31,6 +32,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString(of = { "id", "title" })
 public class List {
 
 	private int id;
