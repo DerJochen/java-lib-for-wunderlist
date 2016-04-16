@@ -42,6 +42,23 @@ public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 	}
 
 	@Test
+	public void testSetUriProvider() {
+		String json = "[]";
+		HTTPClientJUnit.addResponse(json, "list_id=1");
+		Task[] tasksForList = taskService.retrieveAll(1, AUTHORIZATION);
+		Assert.assertNotNull(tasksForList);
+
+		taskService.setUriProvider(null);
+		HTTPClientJUnit.addResponse(json, "list_id=1");
+		try {
+			taskService.retrieveAll(1, AUTHORIZATION);
+		} catch (NullPointerException e) {
+			return;
+		}
+		Assert.fail();
+	}
+
+	@Test
 	public void testRetrieveAll_noTasks() {
 		String json = "[]";
 		HTTPClientJUnit.addResponse(json, "list_id=1");
@@ -91,7 +108,23 @@ public class TaskServiceImplTest extends AbstractRESTClientServiceTest {
 	}
 
 	@Test
-	public void testUpdate() {
+	public void testUpdate_withOutRemove() {
+		Task task = createTasks(1, false)[0];
+
+		task.setStarred(!task.isStarred());
+
+		String json = jsonEntityService.toJSON(task);
+		HTTPClientJUnit.addResponse(json);
+
+		HashMap<String, Object> changes = new HashMap<>();
+		changes.put("starred", Boolean.toString(task.isStarred()));
+		Task task2 = taskService.update(task.getId(), changes, null, task.getRevision(), AUTHORIZATION);
+		Assert.assertNotNull(task);
+		assertEquals(task, task2);
+	}
+
+	@Test
+	public void testUpdate_withRemove() {
 		Task task = createTasks(1, false)[0];
 
 		task.setStarred(!task.isStarred());
